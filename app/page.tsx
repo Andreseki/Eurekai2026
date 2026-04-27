@@ -696,10 +696,10 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <div className="relative h-56 w-56 overflow-hidden rounded-full bg-slate-300 shadow-xl ring-4 ring-white lg:h-64 lg:w-64">
                 <Image
-                  src="/andres.jpg"
+                  src="/andreswht.png"
                   alt="Andrés Rubiano"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
               {/* Social Icons */}
@@ -724,10 +724,10 @@ export default function Home() {
             <div className="flex flex-col items-center text-center">
               <div className="relative h-56 w-56 overflow-hidden rounded-full bg-slate-300 shadow-xl ring-4 ring-white lg:h-64 lg:w-64">
                 <Image
-                  src="/cersar.png"
+                  src="/cesarwht.jpg"
                   alt="César Trujillo"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                 />
               </div>
               {/* Social Icons */}
