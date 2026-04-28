@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 const siteUrl = 'https://www.eurekai.es'
-const ogImageUrl = `${siteUrl}/eurekai_es_logo.jpg`
+const ogImageUrl = `${siteUrl}/og-image.png`
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
