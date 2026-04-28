@@ -130,7 +130,7 @@ export default function Home() {
     {
       quote:
         "Este curso me abrió la mente frente a las múltiples aplicaciones que podemos tener con IA. Cada clase me dejó un caso de uso para aplicar en mi trabajo.",
-      name: "Óscar Zuluaga",
+      name: "scar Zuluaga",
       role: "Director",
       company: "Global Demo and Innovation Team, Oracle",
       image: "/oscar.jpeg",
@@ -271,7 +271,7 @@ export default function Home() {
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-200 md:text-xl">
               Tu empresa, tus gerentes y tu equipo no quieren más demos de IA ni innovaciones sin sentido.
               Quieren ROI.
-              Únete al único bootcamp que te permite entrar con un reto de negocio a las 8:00 AM y salir con un
+              nete al único bootcamp que te permite entrar con un reto de negocio a las 8:00 AM y salir con un
               prototipo funcional y un plan validado a las 6:00 PM.
             </p>
             <p className="mt-6 max-w-3xl text-3xl font-bold uppercase leading-tight text-white sm:text-4xl md:text-[2.8rem] lg:text-[3rem]">
@@ -829,7 +829,7 @@ export default function Home() {
             Precio especial hasta el 01 de mayo
           </p>
 
-          <div id="reserva-countdown" className="mx-auto mt-8 inline-flex justify-center rounded-[1.35rem] bg-white/10 px-4 py-4 shadow-[0_24px_60px_rgba(2,8,23,0.22)] sm:px-6">
+          <div id="reserva-countdown" className="mx-auto mt-8 flex w-full max-w-[980px] justify-center rounded-[1.35rem] bg-white/10 px-3 py-3 shadow-[0_24px_60px_rgba(2,8,23,0.22)] sm:px-6 sm:py-4">
             <CountdownTimer
               targetDate="2026-05-01T00:00:00-05:00"
               variant="boxed"
@@ -929,12 +929,12 @@ export default function Home() {
               {
                 question: "¿Este bootcamp sirve para cualquier tipo de empresa o industria?",
                 answer:
-                  "Sí. El Método EurekAI ha sido aplicado en empresas de tecnología, finanzas, salud, retail, educación, logística y más. No importa el sector — lo que importa es que traigas un reto real y las ganas de trabajarlo. Hemos visto el método funcionar desde startups hasta grandes corporativos y entidades del sector público.",
+                  "Sí. El Método EurekAI ha sido aplicado en empresas de tecnología, finanzas, salud, retail, educación, logística y más. No importa el sector  lo que importa es que traigas un reto real y las ganas de trabajarlo. Hemos visto el método funcionar desde startups hasta grandes corporativos y entidades del sector público.",
               },
               {
                 question: "¿Puedo hacer el bootcamp en mi horario o hay versión virtual?",
                 answer:
-                  "Este bootcamp es 100% presencial — esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 9 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hopes, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
+                  "Este bootcamp es 100% presencial  esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 9 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hopes, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
               },
               {
                 question: "¿Cuánto cuesta y cuáles son las opciones de pago?",
@@ -944,7 +944,7 @@ export default function Home() {
               {
                 question: "¿Qué incluye exactamente mi inscripción?",
                 answer:
-                  "Tu inscripción incluye: acceso al bootcamp presencial completo (8AM–6PM), brunch y almuerzo, el toolkit digital EurekAI, tu insignia blockchain Credly verificable en LinkedIn, acceso a la Comunidad Alumni en WhatsApp y 1 mes de soporte post-evento. Si te inscribes con el precio especial del webinar, también recibes el Sandbox EurekAI (prompts exclusivos listos para usar), el Kit de Aplicación (plantillas y estructuras de trabajo) y 3 bonos adicionales de recursos.",
+                  "Tu inscripción incluye: acceso al bootcamp presencial completo (8AM6PM), brunch y almuerzo, el toolkit digital EurekAI, tu insignia blockchain Credly verificable en LinkedIn, acceso a la Comunidad Alumni en WhatsApp y 1 mes de soporte post-evento. Si te inscribes con el precio especial del webinar, también recibes el Sandbox EurekAI (prompts exclusivos listos para usar), el Kit de Aplicación (plantillas y estructuras de trabajo) y 3 bonos adicionales de recursos.",
               },
               {
                 question: "¿Puedo inscribir a mi equipo o comprar más de un cupo?",
@@ -974,7 +974,7 @@ export default function Home() {
               {
                 question: "¿Qué es la insignia Credly y para qué sirve?",
                 answer:
-                  "Es una certificación digital verificable en blockchain que acredita tu participación y los conocimientos adquiridos en el Bootcamp EurekAI. Puedes agregarla directamente a tu perfil de LinkedIn, compartirla con tu empresa o incluirla en tu hoja de vida. Es la prueba tangible de que no solo asististe — sino que construiste algo real.",
+                  "Es una certificación digital verificable en blockchain que acredita tu participación y los conocimientos adquiridos en el Bootcamp EurekAI. Puedes agregarla directamente a tu perfil de LinkedIn, compartirla con tu empresa o incluirla en tu hoja de vida. Es la prueba tangible de que no solo asististe  sino que construiste algo real.",
               },
             ].map((faq, index) => (
               <details
@@ -1039,3 +1039,5 @@ export default function Home() {
     </main>
   )
 }
+
+

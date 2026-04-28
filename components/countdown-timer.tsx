@@ -101,34 +101,39 @@ export default function CountdownTimer({
 
     return (
       <div
-        className={cx(isLight ? "inline-flex items-center gap-2 sm:gap-3" : "inline-flex items-center gap-2.5 sm:gap-3", className)}
+        className={cx(
+          "grid w-full max-w-[26rem] grid-cols-2 gap-2 sm:max-w-none sm:grid-cols-4 sm:gap-3",
+          className,
+        )}
         aria-label="Cuenta regresiva"
       >
-        {boxedUnits.map((unit, index) => (
-          <div key={unit.label} className={isLight ? "inline-flex items-center gap-2 sm:gap-3" : "inline-flex items-center gap-2.5 sm:gap-3"}>
-            <div
+        {boxedUnits.map((unit) => (
+          <div
+            key={unit.label}
+            className={
+              isLight
+                ? "flex min-w-0 flex-col items-center rounded-xl border border-[#fd7914]/30 bg-white px-2 py-2 sm:px-3 sm:py-2.5"
+                : "flex min-w-0 flex-col items-center rounded-2xl border border-white/80 bg-white/12 px-3 py-3 sm:px-4 sm:py-4"
+            }
+          >
+            <span
               className={
                 isLight
-                  ? "flex min-w-[78px] flex-col items-center rounded-xl border border-[#fd7914]/30 bg-white px-2.5 py-2 sm:min-w-[102px] sm:px-3.5 sm:py-2.5"
-                  : "flex min-w-[88px] flex-col items-center rounded-2xl border border-white/80 bg-white/12 px-3 py-3 sm:min-w-[128px] sm:px-5 sm:py-4"
+                  ? "text-3xl font-extrabold leading-none tabular-nums text-[#fd7914] sm:text-[3rem]"
+                  : "text-3xl font-extrabold leading-none tabular-nums sm:text-[3.6rem]"
               }
             >
-              <span className={isLight ? "text-4xl font-extrabold leading-none tabular-nums text-[#fd7914] sm:text-[3rem]" : "text-4xl font-extrabold leading-none tabular-nums sm:text-[4rem]"}>{unit.value}</span>
-              <span
-                className={
-                  isLight
-                    ? "mt-1 text-[11px] font-bold uppercase tracking-[0.07em] text-[#fd7914] sm:text-xs"
-                    : "mt-2 text-xs font-semibold uppercase tracking-[0.14em] sm:text-lg sm:tracking-[0.1em]"
-                }
-              >
-                {unit.label}
-              </span>
-            </div>
-            {index < boxedUnits.length - 1 && (
-              <span className={isLight ? "pb-0.5 text-4xl font-bold text-[#fd7914] sm:text-[3.1rem]" : "pb-1 text-4xl font-bold sm:text-5xl"}>
-                :
-              </span>
-            )}
+              {unit.value}
+            </span>
+            <span
+              className={
+                isLight
+                  ? "mt-1 text-[10px] font-bold uppercase tracking-[0.06em] text-[#fd7914] sm:text-xs"
+                  : "mt-2 text-[10px] font-semibold uppercase tracking-[0.12em] sm:text-sm"
+              }
+            >
+              {unit.label}
+            </span>
           </div>
         ))}
       </div>

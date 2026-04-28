@@ -11,8 +11,31 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.eurekai.es'),
   title: 'EurekAI Bootcamp',
-  description: 'Bootcamp presencial de innovacion potenciada con inteligencia artificial.',
+  description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
+  openGraph: {
+    title: 'EurekAI Bootcamp',
+    description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
+    url: 'https://www.eurekai.es/',
+    siteName: 'EurekAI',
+    images: [
+      {
+        url: '/LogoEurekai-WTH.png',
+        width: 1200,
+        height: 630,
+        alt: 'Logo oficial de EurekAI',
+      },
+    ],
+    locale: 'es_CO',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EurekAI Bootcamp',
+    description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
+    images: ['/LogoEurekai-WTH.png'],
+  },
   icons: {
     icon: '/eurekai.png',
     shortcut: '/eurekai.png',
