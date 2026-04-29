@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'EurekAI Bootcamp',
     description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
-    url: `${siteUrl}/`,
+    url: `${siteUrl}/bootcamp`,
     siteName: 'EurekAI',
     images: [
       {
