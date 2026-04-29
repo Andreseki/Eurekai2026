@@ -729,8 +729,7 @@ export default function BootcampPage() {
                   src="/cesarwht.jpg"
                   alt="César Trujillo"
                   fill
-                  style={{ objectPosition: "center 14%" }}
-                  className="object-cover"
+                  className="object-cover object-center"
                   sizes="240px"
                 />
               </div>
