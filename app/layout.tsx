@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     'twitter:image': ogImageUrl,
   },
   icons: {
-    icon: '/eurekai.png',
-    shortcut: '/eurekai.png',
-    apple: '/eurekai.png',
+    icon: '/placeholder-logo.png',
+    shortcut: '/placeholder-logo.png',
+    apple: '/placeholder-logo.png',
   },
 }
 
