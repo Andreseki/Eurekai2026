@@ -120,10 +120,6 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     </article>
   )
 
-  if (isMobile) {
-    return <div className="mt-14 grid gap-6">{testimonials.map((testimonial, index) => renderCard(testimonial, `${testimonial.name}-${index}`))}</div>
-  }
-
   return (
     <div className="relative mt-14">
       {totalPages > 1 && (
