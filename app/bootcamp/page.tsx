@@ -699,7 +699,7 @@ export default function BootcampPage() {
                   src="/andreswht.png"
                   alt="Andrés Rubiano"
                   fill
-                  style={{ objectPosition: "center 20%" }}
+                  style={{ objectPosition: "center 38%" }}
                   className="object-cover"
                   sizes="240px"
                 />
@@ -729,7 +729,7 @@ export default function BootcampPage() {
                   src="/cesarwht.jpg"
                   alt="César Trujillo"
                   fill
-                  style={{ objectPosition: "center 18%" }}
+                  style={{ objectPosition: "center 14%" }}
                   className="object-cover"
                   sizes="240px"
                 />
