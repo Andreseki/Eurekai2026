@@ -293,6 +293,7 @@ export default function BootcampPage() {
               <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
                 <video
                   src="/video_eurekai_bootcamp.mp4"
+                  poster="/preview.png"
                   className="h-full w-full object-cover object-center"
                   controls
                   playsInline
@@ -311,7 +312,7 @@ export default function BootcampPage() {
 
               <div className="order-3 mt-8">
                 <div className="mt-5 flex flex-col items-center gap-6 lg:items-start">
-                  <div className="flex items-center justify-center gap-5 lg:justify-start">
+                  <div className="flex flex-col items-center justify-center gap-4 lg:flex-row lg:justify-start lg:gap-5">
                     <div className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
                       <div className="absolute inset-0 rounded-full border-[5px] border-[#d9d9d9]" />
                       <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_360deg,_#fd7914_0deg_108deg,_transparent_108deg_360deg)]" />
@@ -321,7 +322,7 @@ export default function BootcampPage() {
                         <span className="-mt-0.5 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#fd7914]">Inscritos</span>
                       </div>
                     </div>
-                    <p className="max-w-[16ch] text-left text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:max-w-[18ch] lg:text-[2.85rem]">
+                    <p className="max-w-[16ch] text-center text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:max-w-[18ch] lg:text-left lg:text-[2.85rem]">
                       Son solo 25 cupos
                     </p>
                   </div>
