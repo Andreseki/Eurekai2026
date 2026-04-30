@@ -289,7 +289,7 @@ export default function BootcampPage() {
       <section id="cursos" className="bg-white pt-10 pb-14 lg:pt-10 lg:pb-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(280px,360px)_1fr] lg:gap-10">
-            <div className="mx-auto w-full max-w-[360px] lg:mx-0">
+            <div className="order-2 mx-auto w-full max-w-[360px] lg:order-1 lg:mx-0">
               <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
                 <video
                   src="/video_eurekai_bootcamp.mp4"
@@ -301,12 +301,15 @@ export default function BootcampPage() {
               </div>
             </div>
 
-            <div className="text-center lg:pl-5 lg:text-left">
-              <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
-              <div className="mt-4 flex justify-center lg:justify-start">
-                <CountdownTimer targetDate="2026-05-09T00:00:00-05:00" variant="boxedLight" />
+            <div className="contents lg:order-2 lg:block lg:pl-5 lg:text-left">
+              <div className="order-1 text-center lg:text-left">
+                <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
+                <div className="mt-4 flex justify-center lg:justify-start">
+                  <CountdownTimer targetDate="2026-05-09T00:00:00-05:00" variant="boxedLight" />
+                </div>
               </div>
-              <div className="mt-8">
+
+              <div className="order-3 mt-8">
                 <div className="mt-5 flex flex-col items-center gap-6 lg:items-start">
                   <div className="flex items-center justify-center gap-5 lg:justify-start">
                     <div className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
@@ -314,7 +317,7 @@ export default function BootcampPage() {
                       <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_360deg,_#fd7914_0deg_108deg,_transparent_108deg_360deg)]" />
                       <div className="absolute inset-[6px] rounded-full bg-white" />
                       <div className="relative flex flex-col items-center leading-none">
-                        <span className="text-[3rem] font-extrabold text-[#fd7914] sm:text-[3.2rem]">5</span>
+                        <span className="text-[3rem] font-extrabold text-[#fd7914] sm:text-[3.2rem]">6</span>
                         <span className="-mt-0.5 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#fd7914]">Inscritos</span>
                       </div>
                     </div>
