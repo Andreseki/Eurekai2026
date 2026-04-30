@@ -293,7 +293,7 @@ export default function BootcampPage() {
               <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
                 <video
                   src="/video_eurekai_bootcamp.mp4"
-                  poster="/preview.png"
+                  poster="/preview1.jpeg"
                   className="h-full w-full object-cover object-center"
                   controls
                   playsInline
