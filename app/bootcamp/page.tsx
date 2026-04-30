@@ -130,7 +130,7 @@ export default function BootcampPage() {
     {
       quote:
         "Este curso me abrió la mente frente a las múltiples aplicaciones que podemos tener con IA. Cada clase me dejó un caso de uso para aplicar en mi trabajo.",
-      name: "scar Zuluaga",
+      name: "Oscar Zuluaga",
       role: "Director",
       company: "Global Demo and Innovation Team, Oracle",
       image: "/oscar.jpeg",
@@ -278,7 +278,7 @@ export default function BootcampPage() {
               9 DE MAYO
             </p>
             <p className="mt-2 max-w-3xl text-lg font-semibold leading-relaxed text-[#fd7914] md:text-xl">
-              Hannah Hopes, Usaquén, Bogotá
+              Hannah Hops, Usaquén, Bogotá
             </p>
 
           </div>
@@ -288,30 +288,46 @@ export default function BootcampPage() {
       {/* Reserva rápida Section */}
       <section id="cursos" className="bg-white pt-10 pb-14 lg:pt-10 lg:pb-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="text-center">
-            <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
-            <div className="mt-4 flex justify-center">
-              <CountdownTimer targetDate="2026-05-09T00:00:00-05:00" variant="boxedLight" />
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(280px,360px)_1fr] lg:gap-10">
+            <div className="mx-auto w-full max-w-[360px] lg:mx-0">
+              <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
+                <video
+                  src="/video_eurekai_bootcamp.mp4"
+                  className="h-full w-full object-cover object-center"
+                  controls
+                  playsInline
+                  preload="metadata"
+                />
+              </div>
             </div>
-            <div className="mt-8">
-              <p className="text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-[2.85rem]">Son solo 25 cupos, ya tenemos</p>
 
-              <div className="mt-5 flex justify-center">
-                <div className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
-                  <div className="absolute inset-0 rounded-full border-[5px] border-[#d9d9d9]" />
-                  <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_360deg,_#fd7914_0deg_108deg,_transparent_108deg_360deg)]" />
-                  <div className="absolute inset-[6px] rounded-full bg-white" />
-                  <div className="relative flex flex-col items-center leading-none">
-                    <span className="text-[3rem] font-extrabold text-[#fd7914] sm:text-[3.2rem]">5</span>
-                    <span className="-mt-0.5 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#fd7914]">Inscritos</span>
+            <div className="text-center lg:pl-5 lg:text-left">
+              <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
+              <div className="mt-4 flex justify-center lg:justify-start">
+                <CountdownTimer targetDate="2026-05-09T00:00:00-05:00" variant="boxedLight" />
+              </div>
+              <div className="mt-8">
+                <div className="mt-5 flex flex-col items-center gap-6 lg:items-start">
+                  <div className="flex items-center justify-center gap-5 lg:justify-start">
+                    <div className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
+                      <div className="absolute inset-0 rounded-full border-[5px] border-[#d9d9d9]" />
+                      <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_360deg,_#fd7914_0deg_108deg,_transparent_108deg_360deg)]" />
+                      <div className="absolute inset-[6px] rounded-full bg-white" />
+                      <div className="relative flex flex-col items-center leading-none">
+                        <span className="text-[3rem] font-extrabold text-[#fd7914] sm:text-[3.2rem]">5</span>
+                        <span className="-mt-0.5 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#fd7914]">Inscritos</span>
+                      </div>
+                    </div>
+                    <p className="max-w-[16ch] text-left text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:max-w-[18ch] lg:text-[2.85rem]">
+                      Son solo 25 cupos
+                    </p>
                   </div>
+                  <p className="max-w-[18ch] text-center text-[2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.35rem] lg:max-w-none lg:text-left lg:text-[2.6rem]">
+                    Asegura tu entrada 2026 a precio del 2025.
+                  </p>
+                  <p className="mt-2 text-3xl font-extrabold leading-tight text-[#fd7914] sm:text-4xl lg:text-[2.8rem]">¡Ahorra un 20% hoy!</p>
                 </div>
               </div>
-
-              <p className="mt-6 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:text-[2.85rem]">
-                Asegura tu entrada 2026 a precio del 2025.
-              </p>
-              <p className="mt-1 text-3xl font-extrabold leading-tight text-[#fd7914] sm:text-4xl lg:text-[2.8rem]">¡Ahorra un 20% hoy!</p>
             </div>
           </div>
 
@@ -823,7 +839,7 @@ export default function BootcampPage() {
 
         <div className="relative mx-auto max-w-[1440px] px-6 text-center text-white">
           <p className="text-lg font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-xl">
-            9 de mayo · Hannah Hopes, Usaquén, Bogotá
+            9 de mayo · Hannah Hops, Usaquén, Bogotá
           </p>
           <h2 id="reserva-middle" className="text-[4.4rem] font-extrabold uppercase tracking-[0.015em] text-[#fd7914] sm:text-[4.9rem] lg:text-[5.4rem]">
             Early Bird
@@ -937,7 +953,7 @@ export default function BootcampPage() {
               {
                 question: "¿Puedo hacer el bootcamp en mi horario o hay versión virtual?",
                 answer:
-                  "Este bootcamp es 100% presencial  esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 9 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hopes, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
+                  "Este bootcamp es 100% presencial  esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 9 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hops, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
               },
               {
                 question: "¿Cuánto cuesta y cuáles son las opciones de pago?",
@@ -957,7 +973,7 @@ export default function BootcampPage() {
               {
                 question: "¿Dónde es el bootcamp exactamente?",
                 answer:
-                  "El bootcamp se realiza en Hannah Hopes, Usaquén, Bogotá, el sábado 9 de mayo de 2025, de 8:00 AM a 6:00 PM. Es un espacio diseñado para experiencias de alto impacto, con toda la infraestructura que necesitas para trabajar en profundidad durante el día.",
+                  "El bootcamp se realiza en Hannah Hops, Usaquén, Bogotá, el sábado 9 de mayo de 2025, de 8:00 AM a 6:00 PM. Es un espacio diseñado para experiencias de alto impacto, con toda la infraestructura que necesitas para trabajar en profundidad durante el día.",
               },
               {
                 question: "¿Qué debo llevar el día del bootcamp?",
