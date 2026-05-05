@@ -275,7 +275,7 @@ export default function BootcampPage() {
               prototipo funcional y un plan validado a las 6:00 PM.
             </p>
             <p className="mt-6 max-w-3xl text-3xl font-bold uppercase leading-tight text-white sm:text-4xl md:text-[2.8rem] lg:text-[3rem]">
-              9 DE MAYO
+              30 DE MAYO
             </p>
             <p className="mt-2 max-w-3xl text-lg font-semibold leading-relaxed text-[#fd7914] md:text-xl">
               Hannah Hops, Usaquén, Bogotá
@@ -306,7 +306,7 @@ export default function BootcampPage() {
               <div className="order-1 text-center lg:text-left">
                 <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
                 <div className="mt-4 flex justify-center lg:justify-start">
-                  <CountdownTimer targetDate="2026-05-09T00:00:00-05:00" variant="boxedLight" />
+                  <CountdownTimer targetDate="2026-05-30T08:00:00-05:00" variant="boxedLight" />
                 </div>
               </div>
 
@@ -843,7 +843,7 @@ export default function BootcampPage() {
 
         <div className="relative mx-auto max-w-[1440px] px-6 text-center text-white">
           <p className="text-lg font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-xl">
-            9 de mayo · Hannah Hops, Usaquén, Bogotá
+            30 de mayo · Hannah Hops, Usaquén, Bogotá
           </p>
           <h2 id="reserva-middle" className="text-[4.4rem] font-extrabold uppercase tracking-[0.015em] text-[#fd7914] sm:text-[4.9rem] lg:text-[5.4rem]">
             Early Bird
@@ -957,7 +957,7 @@ export default function BootcampPage() {
               {
                 question: "¿Puedo hacer el bootcamp en mi horario o hay versión virtual?",
                 answer:
-                  "Este bootcamp es 100% presencial  esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 9 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hops, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
+                  "Este bootcamp es 100% presencial  esa es precisamente su magia. El modelo de aprendizaje intensivo requiere tu presencia completa el sábado 30 de mayo, de 8:00 AM a 6:00 PM, en Hannah Hops, Usaquén, Bogotá. No existe versión virtual ni grabación. Lo que se construye en el espacio, con la energía del grupo y la facilitación en vivo, no se replica en un video.",
               },
               {
                 question: "¿Cuánto cuesta y cuáles son las opciones de pago?",
@@ -977,7 +977,7 @@ export default function BootcampPage() {
               {
                 question: "¿Dónde es el bootcamp exactamente?",
                 answer:
-                  "El bootcamp se realiza en Hannah Hops, Usaquén, Bogotá, el sábado 9 de mayo de 2025, de 8:00 AM a 6:00 PM. Es un espacio diseñado para experiencias de alto impacto, con toda la infraestructura que necesitas para trabajar en profundidad durante el día.",
+                  "El bootcamp se realiza en Hannah Hops, Usaquén, Bogotá, el sábado 30 de mayo de 2026, de 8:00 AM a 6:00 PM. Es un espacio diseñado para experiencias de alto impacto, con toda la infraestructura que necesitas para trabajar en profundidad durante el día.",
               },
               {
                 question: "¿Qué debo llevar el día del bootcamp?",
