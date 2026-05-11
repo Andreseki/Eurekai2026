@@ -292,7 +292,7 @@ export default function BootcampPage() {
             <div className="order-2 mx-auto w-full max-w-[360px] lg:order-1 lg:mx-0">
               <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
                 <video
-                  src="/video_eurekai_bootcamp.mp4"
+                  src="/video_eurekai.mp4"
                   poster="/preview1.jpeg"
                   className="h-full w-full object-cover object-center"
                   controls
@@ -849,12 +849,12 @@ export default function BootcampPage() {
             Early Bird
           </h2>
           <p className="mt-3 text-[2.1rem] font-semibold text-white/90 sm:text-[2.5rem] lg:text-[2.8rem]">
-            Precio especial hasta el 01 de mayo
+            Precio especial hasta el 25 de mayo
           </p>
 
           <div id="reserva-countdown" className="mx-auto mt-8 flex w-full max-w-[980px] justify-center rounded-[1.35rem] bg-white/10 px-3 py-3 shadow-[0_24px_60px_rgba(2,8,23,0.22)] sm:px-6 sm:py-4">
             <CountdownTimer
-              targetDate="2026-05-01T00:00:00-05:00"
+              targetDate="2026-05-25T23:59:59-05:00"
               variant="boxed"
               size="large"
               className="text-white"
