@@ -114,7 +114,7 @@ function EyebrowNavy({ children }: { children: ReactNode }) {
 }
 
 export default function EurekAiHomePage() {
-  const { openContact, openAgenda } = useSiteModals()
+  const { openContact } = useSiteModals()
   const [facIdx, setFacIdx] = useState(0)
   const [faqOpen, setFaqOpen] = useState<number | null>(null)
 
@@ -626,57 +626,6 @@ export default function EurekAiHomePage() {
               className="inline-flex rounded-full bg-[#F97316] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c]"
             >
               ¿Tienes más dudas?
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#374151] py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-3xl font-bold md:text-4xl">¿Buscas un programa para tu empresa?</h2>
-          <p className="mt-4 text-lg text-slate-200">
-            Diseñamos laboratorios corporativos y programas in-company para equipos que necesitan resolver
-            retos reales con IA e innovación.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={openAgenda}
-              className="w-full rounded-full border-2 border-white px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Agendar una charla
-            </button>
-            <button
-              type="button"
-              onClick={openContact}
-              className="w-full rounded-full bg-[#F97316] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c] sm:w-auto"
-            >
-              Aplicar ahora
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#64748b] py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-3xl font-bold md:text-4xl">Tu siguiente paso empieza hoy</h2>
-          <p className="mt-4 text-lg text-white/90">
-            Aplica ahora y únete a la próxima cohorte de líderes transformando sus organizaciones con IA
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            <button
-              type="button"
-              onClick={openContact}
-              className="w-full rounded-full border-2 border-white px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Contáctanos
-            </button>
-            <button
-              type="button"
-              onClick={openAgenda}
-              className="w-full rounded-full bg-[#F97316] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c] sm:w-auto"
-            >
-              Agendar reunión
             </button>
           </div>
         </div>

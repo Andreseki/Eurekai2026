@@ -3,53 +3,15 @@
 import { Instagram, Linkedin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
 
 const WHATSAPP_HREF =
   "https://wa.me/573150564078?text=Hola%20EurekAI,%20quiero%20conversar%20con%20ustedes"
 
 export default function Footer() {
-  const [email, setEmail] = useState("")
-
   return (
     <footer className="mt-auto">
       <div className="bg-[#0F172A] px-4 py-12 md:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-lg font-bold text-white">Mantente informado</p>
-            <p className="mt-2 max-w-md text-sm text-slate-300">
-              Recibe actualizaciones sobre experiencias y recursos
-            </p>
-          </div>
-          <div className="w-full max-w-md">
-            <form
-              className="flex flex-col gap-3 sm:flex-row sm:items-center"
-              onSubmit={(e) => {
-                e.preventDefault()
-                setEmail("")
-              }}
-            >
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Tu correo aquí"
-                className="w-full flex-1 rounded-full border border-white/10 bg-slate-800/80 px-5 py-3 text-sm text-white placeholder:text-slate-400 outline-none ring-[#F97316]/40 focus:ring-2"
-              />
-              <button
-                type="submit"
-                className="shrink-0 rounded-full bg-[#F97316] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c]"
-              >
-                Suscríbete
-              </button>
-            </form>
-            <p className="mt-2 text-xs text-slate-400">
-              Al suscribirse aceptas nuestra política de privacidad
-            </p>
-          </div>
-        </div>
-
-        <div className="mx-auto mt-12 grid max-w-6xl gap-10 border-t border-white/10 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:border-r lg:border-white/10 lg:pr-8">
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Explora</p>
             <ul className="mt-3 space-y-2 text-sm text-slate-200">

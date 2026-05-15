@@ -2,7 +2,6 @@
 
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
-import { useSiteModals } from "@/components/site-modals-provider"
 import { ChevronLeft, ChevronRight, LayoutGrid, List, MapPin, Timer } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -148,7 +147,6 @@ function matchesFilter(e: Experience, tab: FilterTab) {
 }
 
 export default function ExperienciasPage() {
-  const { openContact, openAgenda } = useSiteModals()
   const [tab, setTab] = useState<FilterTab>("Todo")
   const [view, setView] = useState<"grid" | "list">("list")
 
@@ -356,32 +354,6 @@ export default function ExperienciasPage() {
                 Siguiente <ChevronRight className="h-4 w-4" />
               </span>
             </nav>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#374151] py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-3xl font-bold md:text-4xl">¿Buscas un programa para tu empresa?</h2>
-          <p className="mt-4 text-lg text-slate-200">
-            Diseñamos laboratorios corporativos y programas in-company para equipos que necesitan
-            resolver retos reales con IA e innovación.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={openAgenda}
-              className="w-full rounded-full border-2 border-white px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Agendar una charla
-            </button>
-            <button
-              type="button"
-              onClick={openContact}
-              className="w-full rounded-full bg-[#F97316] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c] sm:w-auto"
-            >
-              Aplicar ahora
-            </button>
           </div>
         </div>
       </section>

@@ -28,7 +28,7 @@ const logosAndres = [
 ]
 
 export default function EurekAiNosotrosPage() {
-  const { openContact, openAgenda } = useSiteModals()
+  const { openContact } = useSiteModals()
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -273,31 +273,6 @@ export default function EurekAiNosotrosPage() {
                 círculo al presente.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#374151] py-16 text-center text-white">
-        <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-3xl font-bold md:text-4xl">¿Listo para unirte a la tribu?</h2>
-          <p className="mt-4 text-lg text-slate-200">
-            Aplica al Bootcamp del 30 de mayo o descarga la guía gratuita para empezar ahora mismo.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button
-              type="button"
-              onClick={openAgenda}
-              className="w-full rounded-full border-2 border-white px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Agendar una charla
-            </button>
-            <button
-              type="button"
-              onClick={openContact}
-              className="w-full rounded-full bg-[#F97316] px-8 py-3 text-sm font-semibold text-white transition hover:bg-[#ea580c] sm:w-auto"
-            >
-              Aplicar ahora
-            </button>
           </div>
         </div>
       </section>
