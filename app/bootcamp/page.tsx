@@ -988,15 +988,6 @@ export default function BootcampPage() {
         </div>
       </section>
 
-      <a
-        href={actionLinks.whatsapp}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="WhatsApp"
-        className="fixed bottom-4 right-4 z-50 inline-flex items-center justify-center rounded-full bg-[#fd7914] p-4 text-white shadow-2xl shadow-slate-950/35 transition hover:bg-[#e26b0e] md:bottom-6 md:right-6"
-      >
-        <Image src="/whatsapp.svg" alt="WhatsApp" width={28} height={28} className="h-7 w-7" />
-      </a>
     </main>
   )
 }

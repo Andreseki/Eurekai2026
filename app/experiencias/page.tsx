@@ -5,7 +5,9 @@ import Navbar from "@/components/Navbar"
 import { ChevronLeft, ChevronRight, LayoutGrid, List, MapPin, Timer } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useMemo, useState } from "react"
+import { experienciaAnchorId } from "@/lib/experiencias-deep-links"
+import { useSearchParams } from "next/navigation"
+import { Suspense, useEffect, useMemo, useRef, useState } from "react"
 
 type ExpType = "Bootcamp" | "Curso" | "InCompany" | "Misiones"
 
@@ -109,7 +111,25 @@ const experiences: Experience[] = [
   },
 ]
 
-type FilterTab = "Todo" | "Cursos" | "Bootcamp" | "Laboratorio" | "Misiones"
+type FilterTab = "Todo" | "Cursos" | "Bootcamp" | "InCompany" | "Misiones"
+
+const FILTER_TABS: FilterTab[] = ["Todo", "Cursos", "Bootcamp", "InCompany", "Misiones"]
+
+const TAB_LABELS: Record<FilterTab, string> = {
+  Todo: "Todo",
+  Cursos: "Cursos",
+  Bootcamp: "Bootcamp",
+  InCompany: "In Company",
+  Misiones: "Misiones",
+}
+
+const TAB_FROM_QUERY: Record<string, FilterTab> = {
+  cursos: "Cursos",
+  bootcamp: "Bootcamp",
+  incompany: "InCompany",
+  misiones: "Misiones",
+  todo: "Todo",
+}
 
 const categoryCopy: Record<
   FilterTab,
@@ -117,7 +137,7 @@ const categoryCopy: Record<
 > = {
   Todo: {
     title: "Todas las experiencias",
-    body: "Explora cursos, bootcamps, laboratorios experienciales y misiones diseñadas para acelerar innovación con IA.",
+    body: "Explora cursos, bootcamps, programas in-company y misiones diseñadas para acelerar innovación con IA.",
   },
   Cursos: {
     title: "Cursos",
@@ -127,8 +147,8 @@ const categoryCopy: Record<
     title: "Bootcamp",
     body: "Jornadas intensivas para pasar de un reto real a prototipo y pitch con mentores en tiempo récord.",
   },
-  Laboratorio: {
-    title: "Laboratorio",
+  InCompany: {
+    title: "In Company",
     body: "Workshops experienciales y sesiones in-company donde el equipo construye soluciones tangibles con método.",
   },
   Misiones: {
@@ -141,16 +161,66 @@ function matchesFilter(e: Experience, tab: FilterTab) {
   if (tab === "Todo") return true
   if (tab === "Cursos") return e.tipo === "Curso"
   if (tab === "Bootcamp") return e.tipo === "Bootcamp"
-  if (tab === "Laboratorio") return e.tipo === "InCompany"
+  if (tab === "InCompany") return e.tipo === "InCompany"
   if (tab === "Misiones") return e.tipo === "Misiones"
   return true
 }
 
-export default function ExperienciasPage() {
-  const [tab, setTab] = useState<FilterTab>("Todo")
+function ExperienciasPageContent() {
+  const searchParams = useSearchParams()
+  const [tab, setTab] = useState<FilterTab>(() => {
+    const q = searchParams.get("tab")?.toLowerCase() ?? ""
+    return TAB_FROM_QUERY[q] ?? "Todo"
+  })
   const [view, setView] = useState<"grid" | "list">("list")
+  const [highlightAnchor, setHighlightAnchor] = useState<string | null>(null)
+  const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const q = searchParams.get("tab")?.toLowerCase() ?? ""
+    setTab(TAB_FROM_QUERY[q] ?? "Todo")
+  }, [searchParams])
 
   const filtered = useMemo(() => experiences.filter((e) => matchesFilter(e, tab)), [tab])
+
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "")
+    if (!hash) return
+
+    let frame = 0
+    let attempts = 0
+    const maxAttempts = 24
+
+    const scrollToTarget = () => {
+      const el = document.getElementById(hash)
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" })
+        setHighlightAnchor(hash)
+        if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current)
+        highlightTimerRef.current = setTimeout(() => setHighlightAnchor(null), 2600)
+        return
+      }
+      if (attempts < maxAttempts) {
+        attempts += 1
+        frame = requestAnimationFrame(scrollToTarget)
+      }
+    }
+
+    frame = requestAnimationFrame(scrollToTarget)
+
+    const onHashChange = () => {
+      attempts = 0
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(scrollToTarget)
+    }
+    window.addEventListener("hashchange", onHashChange)
+
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener("hashchange", onHashChange)
+      if (highlightTimerRef.current) clearTimeout(highlightTimerRef.current)
+    }
+  }, [searchParams, tab, filtered])
   const cat = categoryCopy[tab]
 
   return (
@@ -158,18 +228,23 @@ export default function ExperienciasPage() {
       <Navbar />
 
       <section className="relative overflow-hidden bg-[#0F172A] pb-20 pt-28 text-white lg:pb-28 lg:pt-36">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
           <Image
             src="/escogetucamino.jpg"
             alt="Experiencias formativas"
             fill
-            className="object-cover object-[70%_center] sm:object-[65%_center] md:object-[58%_center]"
+            className="object-cover object-[100%_center] sm:object-[112%_center] md:object-[122%_center] lg:object-[135%_center]"
             priority
             sizes="100vw"
           />
+          <div className="absolute inset-0 bg-slate-950/35" aria-hidden />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/20 to-slate-950/50"
+            aria-hidden
+          />
         </div>
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-full max-w-[min(100%,46rem)] bg-[linear-gradient(90deg,rgba(2,6,23,0.92)_0%,rgba(15,23,42,0.8)_30%,rgba(15,23,42,0.42)_54%,rgba(15,23,42,0.06)_80%,transparent_100%)]"
+          className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[min(100%,50rem)] bg-[linear-gradient(90deg,#0F172A_0%,rgba(15,23,42,0.95)_18%,rgba(15,23,42,0.75)_38%,rgba(15,23,42,0.35)_58%,rgba(15,23,42,0.05)_78%,transparent_100%)]"
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-6xl px-6 text-left">
@@ -186,10 +261,13 @@ export default function ExperienciasPage() {
         </div>
       </section>
 
-      <div className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div
+        id="experiencias-filtros"
+        className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur"
+      >
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
           <div className="flex flex-wrap gap-6">
-            {(["Todo", "Cursos", "Bootcamp", "Laboratorio", "Misiones"] as const).map((t) => (
+            {FILTER_TABS.map((t) => (
               <button
                 key={t}
                 type="button"
@@ -198,7 +276,7 @@ export default function ExperienciasPage() {
                   tab === t ? "text-[#F97316]" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                {t}
+                {TAB_LABELS[t]}
                 {tab === t ? (
                   <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-[#F97316]" />
                 ) : null}
@@ -251,13 +329,25 @@ export default function ExperienciasPage() {
                   : "flex flex-col divide-y divide-slate-200"
               }
             >
-              {filtered.map((e) => (
+              {filtered.map((e) => {
+                const anchorId = experienciaAnchorId(e.id)
+                const isHighlighted = highlightAnchor === anchorId
+                return (
                 <article
                   key={e.id}
+                  id={anchorId}
                   className={
                     view === "grid"
-                      ? "flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
-                      : "flex flex-col gap-4 py-8 first:pt-0 md:flex-row md:items-stretch"
+                      ? `flex scroll-mt-32 flex-col overflow-hidden rounded-xl border bg-white shadow-sm transition-shadow duration-300 ${
+                          isHighlighted
+                            ? "border-[#F97316] ring-2 ring-[#F97316]/40 ring-offset-2"
+                            : "border-slate-200"
+                        }`
+                      : `flex scroll-mt-32 flex-col gap-4 py-8 transition-shadow duration-300 first:pt-0 md:flex-row md:items-stretch ${
+                          isHighlighted
+                            ? "rounded-xl ring-2 ring-[#F97316]/50 ring-offset-4"
+                            : ""
+                        }`
                   }
                 >
                   <div
@@ -321,7 +411,8 @@ export default function ExperienciasPage() {
                     </div>
                   </div>
                 </article>
-              ))}
+                )
+              })}
             </div>
 
             <nav
@@ -360,5 +451,13 @@ export default function ExperienciasPage() {
 
       <Footer />
     </div>
+  )
+}
+
+export default function ExperienciasPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <ExperienciasPageContent />
+    </Suspense>
   )
 }

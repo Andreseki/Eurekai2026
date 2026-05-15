@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react"
 import ModalContacto from "@/components/ModalContacto"
+import WhatsAppFloat from "@/components/WhatsAppFloat"
 import { GOOGLE_BOOKING_URL } from "@/lib/site-config"
 
 type SiteModalsContextValue = {
@@ -53,6 +54,7 @@ export function SiteModalsProvider({ children }: { children: ReactNode }) {
   return (
     <SiteModalsContext.Provider value={value}>
       {children}
+      <WhatsAppFloat />
       <ModalContacto open={contactOpen} onClose={closeContact} />
     </SiteModalsContext.Provider>
   )

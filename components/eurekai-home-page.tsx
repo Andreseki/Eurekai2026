@@ -3,8 +3,8 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import TestimonialsCarousel from "@/components/testimonials-carousel"
-import WhatsAppFloat from "@/components/WhatsAppFloat"
 import { useSiteModals } from "@/components/site-modals-provider"
+import { HOME_CAMINO_LINKS } from "@/lib/experiencias-deep-links"
 import { homeTestimonials } from "@/lib/home-testimonials-data"
 import {
   Backpack,
@@ -160,7 +160,6 @@ export default function EurekAiHomePage() {
             Próximas Experiencias
           </Link>
         </div>
-        <WhatsAppFloat />
       </section>
 
       <section className="bg-slate-50 py-16 lg:py-24">
@@ -239,26 +238,30 @@ export default function EurekAiHomePage() {
                 Icon: Bookmark,
                 title: "Cursos",
                 desc: "Formación en Inteligencia Artificial e Innovación.",
+                href: HOME_CAMINO_LINKS.cursos,
               },
               {
                 Icon: Backpack,
                 title: "Bootcamps",
                 desc: "Entrenamientos rápidos, ágiles y a la medida.",
+                href: "/bootcamp",
               },
               {
                 Icon: Building2,
                 title: "InCompany",
                 desc: "Experiencias a la medida de las necesidades.",
+                href: HOME_CAMINO_LINKS.incompany,
               },
               {
                 Icon: Rocket,
                 title: "Misiones",
                 desc: "Visitar empresas que están implementando IA.",
+                href: HOME_CAMINO_LINKS.misiones,
               },
             ].map((c) => (
               <Link
                 key={c.title}
-                href="/experiencias"
+                href={c.href}
                 className="block rounded-2xl border-2 border-[#0F172A] bg-white p-8 text-center shadow-sm transition hover:border-[#F97316] hover:shadow-md"
               >
                 <c.Icon className="mx-auto h-9 w-9 text-[#F97316]" strokeWidth={1.75} />
