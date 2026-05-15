@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation"
+import EurekAiHomePage from "@/components/eurekai-home-page"
 
-export default function Home() {
-  redirect("/bootcamp")
+export default function Page() {
+  return <EurekAiHomePage />
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import {
-  Menu,
   Users,
   UserPlus,
   Check,
@@ -18,6 +17,7 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import CountdownTimer from "../../components/countdown-timer"
+import Navbar from "@/components/Navbar"
 import TestimonialsCarousel from "../../components/testimonials-carousel"
 import Image from "next/image"
 import Link from "next/link"
@@ -176,72 +176,10 @@ export default function BootcampPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Banner promocional */}
-      <a href="#reserva-middle" className="relative z-40 block bg-[#fd7914] py-1.5 text-center transition-colors hover:bg-[#ff7a1a] md:py-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white md:text-sm">
-          Transforma tu negocio en un solo día. Aprovecha el 20% de descuento por tiempo limitado !
-        </p>
-      </a>
-
-      {/* Header / Navegación */}
-      <header className="relative z-30 -mb-[80px] px-3 pt-0 md:-mb-[88px] md:px-5">
-        <div className="mx-auto flex w-full max-w-[1680px] items-center gap-5 rounded-b-[1.6rem] border border-white/90 bg-white/90 px-4 py-2.5 shadow-[0_10px_28px_rgba(15,23,42,0.08)] backdrop-blur-md md:px-6 md:py-3">
-          {/* Logo */}
-          <Link href="/bootcamp" className="flex items-center">
-            <Image
-              src="/placeholder-logo.png"
-              alt="EurekAI logo"
-              width={220}
-              height={62}
-              className="h-10 w-auto object-contain md:h-12"
-            />
-          </Link>
-
-          {/* Navegación Desktop */}
-          <nav className="hidden flex-1 items-center justify-center gap-9 md:flex lg:gap-12">
-            <Link
-              href={actionLinks.inicio}
-              className="text-base font-medium text-slate-800 transition-colors hover:text-slate-950"
-            >
-              Inicio
-            </Link>
-            <Link
-              href={actionLinks.cursos}
-              className="text-base font-medium text-slate-800 transition-colors hover:text-slate-950"
-            >
-              Cursos
-            </Link>
-            <Link
-              href={actionLinks.facilitadores}
-              className="text-base font-medium text-slate-800 transition-colors hover:text-slate-950"
-            >
-              Facilitadores
-            </Link>
-            <Link
-              href={actionLinks.preguntas}
-              className="text-base font-medium text-slate-800 transition-colors hover:text-slate-950"
-            >
-              Preguntas
-            </Link>
-          </nav>
-
-          {/* CTA Button */}
-          <div className="ml-auto flex items-center gap-4">
-            <a
-              href="#reserva-middle"
-              className="hidden rounded-full bg-[#fd7914] px-9 py-2.5 text-base font-semibold text-white transition-all hover:bg-[#fd7914] md:inline-block"
-            >
-              Inscríbete
-            </a>
-            <button className="md:hidden" aria-label="Abrir menú">
-              <Menu className="h-6 w-6 text-slate-700" />
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       {/* Hero Section */}
-      <section id="inicio" className="relative overflow-hidden bg-slate-900 pb-20 pt-36 lg:pb-28 lg:pt-44">
+      <section id="inicio" className="relative overflow-hidden bg-slate-900 pb-20 pt-28 lg:pb-28 lg:pt-36">
         <div className="absolute inset-0">
           <Image
             src="/banner.jpg"
@@ -882,7 +820,7 @@ export default function BootcampPage() {
 
           <div className="mt-10 flex flex-col items-center">
             <a
-              href="https://checkout.wompi.co/l/MIULqQ"
+              href="https://checkout.wompi.co/l/P9hY3x"
               target="_blank"
               rel="noreferrer noopener"
               className="inline-flex rounded-full bg-[#fd7914] px-12 py-5 text-2xl font-bold uppercase tracking-wide text-white shadow-lg shadow-[#fd7914]/40 transition hover:bg-[#fd7914] sm:px-16"

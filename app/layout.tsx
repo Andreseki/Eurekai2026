@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { Inter } from 'next/font/google'
+import { SiteModalsProvider } from '@/components/site-modals-provider'
 import './globals.css'
 
 const inter = Inter({
@@ -15,12 +16,17 @@ const ogImageUrl = `${siteUrl}/og-image.png`
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'EurekAI Bootcamp',
-  description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
+  title: {
+    default: 'EurekAI',
+    template: '%s · EurekAI',
+  },
+  description:
+    'Innovación, IA e impacto: experiencias formativas para líderes y equipos que quieren resultados en tiempo récord.',
   openGraph: {
-    title: 'EurekAI Bootcamp',
-    description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
-    url: `${siteUrl}/bootcamp`,
+    title: 'EurekAI',
+    description:
+      'Innovación, IA e impacto: experiencias formativas para líderes y equipos que quieren resultados en tiempo récord.',
+    url: `${siteUrl}/`,
     siteName: 'EurekAI',
     images: [
       {
@@ -35,8 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EurekAI Bootcamp',
-    description: 'Bootcamp presencial de innovación potenciada con inteligencia artificial.',
+    title: 'EurekAI',
+    description:
+      'Innovación, IA e impacto: experiencias formativas para líderes y equipos que quieren resultados en tiempo récord.',
     images: [ogImageUrl],
   },
   other: {
@@ -59,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={inter.variable}>
       <body className="font-sans antialiased min-h-screen bg-background text-foreground">
-        {children}
+        <SiteModalsProvider>{children}</SiteModalsProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

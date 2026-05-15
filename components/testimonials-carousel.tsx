@@ -14,17 +14,23 @@ interface Testimonial {
 
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[]
+  /** En desktop: 2 (por defecto, bootcamp) o 3 (inicio EurekAI). */
+  desktopColumns?: 2 | 3
 }
 
 const MOBILE_BREAKPOINT = 768
 
-export default function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
+export default function TestimonialsCarousel({
+  testimonials,
+  desktopColumns = 2,
+}: TestimonialsCarouselProps) {
   const [isMobile, setIsMobile] = useState(false)
   const [page, setPage] = useState(0)
   const touchStartX = useRef<number | null>(null)
   const touchStartY = useRef<number | null>(null)
-  const cardsPerPage = isMobile ? 1 : 2
+  const cardsPerPage = isMobile ? 1 : desktopColumns
   const totalPages = Math.max(1, Math.ceil(testimonials.length / cardsPerPage))
+  const pageClamped = Math.min(page, totalPages - 1)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
@@ -34,24 +40,23 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     return () => mediaQuery.removeEventListener("change", syncViewport)
   }, [])
 
-  useEffect(() => {
-    setPage((current) => {
-      if (current <= totalPages - 1) return current
-      return Math.max(0, totalPages - 1)
-    })
-  }, [totalPages])
-
   const visibleTestimonials = useMemo(() => {
-    const start = page * cardsPerPage
+    const start = pageClamped * cardsPerPage
     return testimonials.slice(start, start + cardsPerPage)
-  }, [cardsPerPage, page, testimonials])
+  }, [cardsPerPage, pageClamped, testimonials])
 
   const goPrev = () => {
-    setPage((current) => (current - 1 + totalPages) % totalPages)
+    setPage((current) => {
+      const c = Math.min(current, totalPages - 1)
+      return (c - 1 + totalPages) % totalPages
+    })
   }
 
   const goNext = () => {
-    setPage((current) => (current + 1) % totalPages)
+    setPage((current) => {
+      const c = Math.min(current, totalPages - 1)
+      return (c + 1) % totalPages
+    })
   }
 
   const onTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
@@ -80,45 +85,70 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     touchStartY.current = null
   }
 
-  const renderCard = (testimonial: Testimonial, key: string) => (
+  const renderCard = (testimonial: Testimonial, key: string) => {
+    const compact = desktopColumns === 3
+    return (
     <article
       key={key}
-      className="relative flex h-full min-h-[360px] flex-col overflow-hidden rounded-[2rem] bg-[#061634] p-8 shadow-[0_18px_30px_rgba(2,8,23,0.2)]"
+      className="relative flex h-full min-h-[320px] flex-col overflow-hidden rounded-[2rem] bg-[#0F172A] p-6 shadow-[0_18px_30px_rgba(2,8,23,0.2)] md:min-h-[360px] md:p-8"
     >
-      <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 bg-[radial-gradient(circle_at_top_right,rgba(253,121,20,0.25),transparent_66%)]" />
+      <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.22),transparent_66%)]" />
 
       <Image
         src="/comillas.svg"
         alt="Comillas"
         width={44}
         height={34}
-        className="absolute left-8 top-6 h-11 w-auto object-contain"
+        className="absolute left-6 top-5 h-9 w-auto object-contain md:left-8 md:top-6 md:h-11"
       />
 
-      <p className="mt-12 flex-1 text-[1.05rem] italic leading-relaxed text-white/92 md:text-[1.12rem]">
+      <p
+        className={`mt-10 flex-1 italic leading-relaxed text-white/92 md:mt-12 ${
+          compact ? "text-sm md:text-[0.95rem]" : "text-[1.05rem] md:text-[1.12rem]"
+        }`}
+      >
         &ldquo;{testimonial.quote}&rdquo;
       </p>
 
       <div className="mt-5 border-t border-white/15 pt-5">
-        <div className="flex items-center justify-between gap-4">
+        <div
+          className={`flex gap-4 ${
+            compact ? "flex-col items-start" : "items-center justify-between"
+          }`}
+        >
           {testimonial.image && (
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-white/20">
-              <Image src={testimonial.image} alt={`Foto de ${testimonial.name}`} fill className="object-cover" sizes="80px" />
+            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-white/20 md:h-20 md:w-20">
+              <Image
+                src={testimonial.image}
+                alt={`Foto de ${testimonial.name}`}
+                fill
+                className="object-cover"
+                sizes="80px"
+              />
             </div>
           )}
 
-          <div className="min-w-0 text-right">
-            <p className="text-3xl font-bold leading-tight text-white md:text-4xl">{testimonial.name}</p>
-            <p className="mt-1.5 text-xl text-white/85">
-              {testimonial.role}
-              {testimonial.company ? `, ${testimonial.company}` : ""}
+          <div className={`min-w-0 ${compact ? "text-left" : "text-right"}`}>
+            <p
+              className={`font-bold leading-tight text-white ${
+                compact ? "text-base md:text-lg" : "text-3xl md:text-4xl"
+              }`}
+            >
+              {testimonial.name}
             </p>
-            {testimonial.secondaryRole && <p className="text-lg text-white/70">{testimonial.secondaryRole}</p>}
+            <p className={`mt-1 text-white/85 ${compact ? "text-xs md:text-sm" : "text-xl"}`}>
+              {testimonial.role}
+              {testimonial.company ? ` — ${testimonial.company}` : ""}
+            </p>
+            {testimonial.secondaryRole && (
+              <p className="text-lg text-white/70">{testimonial.secondaryRole}</p>
+            )}
           </div>
         </div>
       </div>
     </article>
-  )
+    )
+  }
 
   return (
     <div className="relative mt-14">
@@ -148,8 +178,14 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
         </>
       )}
 
-      <div className="grid gap-6 items-stretch md:grid-cols-2" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-        {visibleTestimonials.map((testimonial, index) => renderCard(testimonial, `${testimonial.name}-${page}-${index}`))}
+      <div
+        className={`grid grid-cols-1 items-stretch gap-6 ${desktopColumns === 3 ? "md:grid-cols-3" : "md:grid-cols-2"}`}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        {visibleTestimonials.map((testimonial, index) =>
+          renderCard(testimonial, `${testimonial.name}-${pageClamped}-${index}`),
+        )}
       </div>
 
       {totalPages > 1 && (
@@ -161,8 +197,8 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
               onClick={() => setPage(index)}
               aria-label={`Ir a página ${index + 1} de testimonios`}
               className={
-                index === page
-                  ? "h-4 w-14 rounded-full bg-black"
+                index === pageClamped
+                  ? "h-4 w-14 rounded-full bg-[#0F172A]"
                   : "h-4 w-4 rounded-full bg-slate-300 transition hover:bg-slate-400"
               }
             />
@@ -172,7 +208,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
 
       {totalPages > 1 && (
         <p className="mt-3 text-center text-xs font-medium text-slate-500 md:hidden">
-          Página {page + 1} de {totalPages}
+          Página {pageClamped + 1} de {totalPages}
         </p>
       )}
 
