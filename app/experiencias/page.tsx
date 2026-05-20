@@ -2,7 +2,7 @@
 
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
-import { ChevronLeft, ChevronRight, LayoutGrid, List, MapPin, Timer } from "lucide-react"
+import { LayoutGrid, List, MapPin, Timer } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { experienciaAnchorId } from "@/lib/experiencias-deep-links"
@@ -237,9 +237,9 @@ function ExperienciasPageContent() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-slate-950/35" aria-hidden />
+          <div className="absolute inset-0 bg-slate-950/55" aria-hidden />
           <div
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/20 to-slate-950/50"
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/35 to-slate-950/65"
             aria-hidden
           />
         </div>
@@ -414,37 +414,6 @@ function ExperienciasPageContent() {
                 )
               })}
             </div>
-
-            <nav
-              className="mt-10 flex flex-wrap items-center justify-center gap-2 text-sm font-medium text-slate-600"
-              aria-label="Paginación"
-            >
-              <span className="inline-flex items-center gap-1 px-2 text-slate-400">
-                <ChevronLeft className="h-4 w-4" /> Anterior
-              </span>
-              {[1, 2, 3, "…", 8, 9, 10].map((p, i) =>
-                typeof p === "number" ? (
-                  <button
-                    key={`${p}-${i}`}
-                    type="button"
-                    className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
-                      p === 1
-                        ? "bg-[#0F172A] text-white"
-                        : "hover:bg-slate-100"
-                    }`}
-                  >
-                    {p}
-                  </button>
-                ) : (
-                  <span key={p} className="px-1 text-slate-400">
-                    {p}
-                  </span>
-                ),
-              )}
-              <span className="inline-flex items-center gap-1 px-2 text-slate-400">
-                Siguiente <ChevronRight className="h-4 w-4" />
-              </span>
-            </nav>
           </div>
         </div>
       </section>
