@@ -102,7 +102,7 @@ export default function BootcampPage() {
     {
       quote:
         "La metodología de aprender creando, combinada con ejercicios reales, transformó mi práctica como médica. Descubrí cómo acercarme a las verdaderas necesidades de mis pacientes y caminar hacia la excelencia en salud.",
-      name: "Johanna Vásquez B",
+      name: "Johanna Vásquez B.",
       role: "Pediatra",
       company: "Los Cobos Medical Center",
       image: "/johanna.jpeg",
@@ -110,7 +110,7 @@ export default function BootcampPage() {
     {
       quote:
         "La innovación dejó de ser concepto y se convirtió en práctica viva. Aprendí a equivocarme y construir desde la acción. Hoy construyo sistemas de innovación que generan resultados reales en mi empresa.",
-      name: "Claudia Varga C",
+      name: "Claudia Vargas",
       role: "Gerente General",
       company: "Construvid",
       image: "/claudia.jpeg",
