@@ -18,7 +18,7 @@ import {
 import { useState } from "react"
 import CountdownTimer from "../../components/countdown-timer"
 import Navbar from "@/components/Navbar"
-import PromoBottomBar from "@/components/floating-cta"
+// import PromoBottomBar from "@/components/floating-cta"
 import { WOMPI_CHECKOUT_URL } from "@/lib/site-config"
 import TestimonialsCarousel from "../../components/testimonials-carousel"
 import Image from "next/image"
@@ -979,7 +979,7 @@ export default function BootcampPage() {
       </section>
 
       <footer className="relative bg-black" data-site-footer>
-        <PromoBottomBar />
+        {/* <PromoBottomBar /> */}
         <div className="footer-body">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row">
           <Link href="/bootcamp" className="flex items-center gap-3">

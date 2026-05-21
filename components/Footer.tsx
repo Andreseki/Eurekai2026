@@ -3,6 +3,7 @@
 import { Instagram, Linkedin } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+// import PromoBottomBar from "@/components/floating-cta"
 
 const WHATSAPP_HREF =
   "https://wa.me/573150564078?text=Hola%20EurekAI,%20quiero%20conversar%20con%20ustedes"
@@ -10,6 +11,7 @@ const WHATSAPP_HREF =
 export default function Footer() {
   return (
     <footer className="mt-auto" data-site-footer>
+      {/* <PromoBottomBar /> */}
       <div className="footer-body">
       <div className="bg-[#0F172A] px-4 py-12 md:px-8">
         <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
