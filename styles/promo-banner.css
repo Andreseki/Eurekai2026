@@ -1,0 +1,138 @@
+/* Barra CTA inferior — 1280×80 px, anclada al footer */
+
+:root {
+  --promo-bar-orange: #fd7914;
+  --promo-bar-height: 80px;
+  --promo-bar-width: 1280px;
+}
+
+.promo-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 85;
+  width: min(var(--promo-bar-width), calc(100% - 2rem));
+  max-width: var(--promo-bar-width);
+  height: var(--promo-bar-height);
+  border-radius: 12px 12px 0 0;
+  background-color: var(--promo-bar-orange);
+  transform: translateX(-50%);
+}
+
+.promo-bottom-bar--docked {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+}
+
+.promo-bottom-bar__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-inline: 2.5rem;
+}
+
+.promo-bottom-bar__title {
+  margin: 0;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.promo-bottom-bar__close {
+  position: absolute;
+  top: 0.625rem;
+  right: 1rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: rgb(255 255 255 / 0.7);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.promo-bottom-bar__close:hover {
+  color: #ffffff;
+}
+
+.promo-bottom-bar__close svg {
+  width: 0.8125rem;
+  height: 0.8125rem;
+  stroke-width: 2.5;
+}
+
+.promo-bottom-bar__cta {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  padding: 0.625rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--promo-bar-orange);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.promo-bottom-bar__cta:hover {
+  background-color: #f8fafc;
+}
+
+footer[data-site-footer] {
+  position: relative;
+}
+
+footer[data-site-footer][data-promo-docked] > .footer-body {
+  padding-top: var(--promo-bar-height);
+}
+
+@media (max-width: 639px) {
+  .promo-bottom-bar {
+    width: 100%;
+    height: auto;
+    min-height: var(--promo-bar-height);
+    border-radius: 0;
+  }
+
+  .promo-bottom-bar__inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 1.75rem 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .promo-bottom-bar__title {
+    font-size: 0.9375rem;
+  }
+
+  .promo-bottom-bar__cta {
+    align-self: center;
+  }
+
+  .promo-bottom-bar__close {
+    top: 0.5rem;
+    right: 0.75rem;
+  }
+
+  footer[data-site-footer][data-promo-docked] > .footer-body {
+    padding-top: calc(var(--promo-bar-height) + 2.5rem);
+  }
+}

@@ -1,6 +1,6 @@
 "use client"
 
-import Footer from "@/components/Footer"
+import SitePageFooter from "@/components/site-page-footer"
 import Navbar from "@/components/Navbar"
 import { LayoutGrid, List, MapPin, Timer } from "lucide-react"
 import Image from "next/image"
@@ -115,6 +115,9 @@ type FilterTab = "Todo" | "Cursos" | "Bootcamp" | "InCompany" | "Misiones"
 
 const FILTER_TABS: FilterTab[] = ["Todo", "Cursos", "Bootcamp", "InCompany", "Misiones"]
 
+/** A partir de este curso la lista se colapsa hasta pulsar "Ver más". */
+const EXPERIENCIAS_COLLAPSE_FROM_ID = "4"
+
 const TAB_LABELS: Record<FilterTab, string> = {
   Todo: "Todo",
   Cursos: "Cursos",
@@ -173,6 +176,7 @@ function ExperienciasPageContent() {
     return TAB_FROM_QUERY[q] ?? "Todo"
   })
   const [view, setView] = useState<"grid" | "list">("list")
+  const [showAllExperiences, setShowAllExperiences] = useState(false)
   const [highlightAnchor, setHighlightAnchor] = useState<string | null>(null)
   const highlightTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -182,6 +186,24 @@ function ExperienciasPageContent() {
   }, [searchParams])
 
   const filtered = useMemo(() => experiences.filter((e) => matchesFilter(e, tab)), [tab])
+
+  const { visibleExperiences, collapsedExperiences } = useMemo(() => {
+    if (showAllExperiences) {
+      return { visibleExperiences: filtered, collapsedExperiences: [] as Experience[] }
+    }
+    const idx = filtered.findIndex((e) => e.id === EXPERIENCIAS_COLLAPSE_FROM_ID)
+    if (idx === -1) {
+      return { visibleExperiences: filtered, collapsedExperiences: [] as Experience[] }
+    }
+    return {
+      visibleExperiences: filtered.slice(0, idx),
+      collapsedExperiences: filtered.slice(idx),
+    }
+  }, [filtered, showAllExperiences])
+
+  useEffect(() => {
+    setShowAllExperiences(false)
+  }, [tab])
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "")
@@ -227,8 +249,9 @@ function ExperienciasPageContent() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[#0F172A] pb-20 pt-28 text-white lg:pb-28 lg:pt-36">
-        <div className="absolute inset-0 overflow-hidden">
+      <main className="relative flex flex-1 flex-col">
+      <section className="eurekai-hero-section relative min-h-[min(68vh,640px)] overflow-hidden bg-[#0F172A] pb-0 text-white md:min-h-[min(75vh,720px)] lg:min-h-[min(80vh,780px)]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="/escogetucamino.jpg"
             alt="Experiencias formativas"
@@ -247,7 +270,8 @@ function ExperienciasPageContent() {
           className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[min(100%,50rem)] bg-[linear-gradient(90deg,#0F172A_0%,rgba(15,23,42,0.95)_18%,rgba(15,23,42,0.75)_38%,rgba(15,23,42,0.35)_58%,rgba(15,23,42,0.05)_78%,transparent_100%)]"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 text-left">
+
+        <div className="relative z-10 mx-auto flex min-h-[min(68vh,640px)] max-w-6xl flex-col justify-center px-6 py-16 text-left md:min-h-[min(75vh,720px)] md:py-20 lg:min-h-[min(80vh,780px)] lg:py-24">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/90">
             Explora soluciones de formación
           </p>
@@ -261,18 +285,15 @@ function ExperienciasPageContent() {
         </div>
       </section>
 
-      <div
-        id="experiencias-filtros"
-        className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur"
-      >
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-6">
-          <div className="flex flex-wrap gap-6">
+      <div id="experiencias-filtros" className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-6 px-6 py-4">
+          <div className="flex min-w-0 flex-1 items-center gap-8 overflow-x-auto md:gap-10">
             {FILTER_TABS.map((t) => (
               <button
                 key={t}
                 type="button"
                 onClick={() => setTab(t)}
-                className={`relative pb-2 text-sm font-semibold uppercase tracking-wide transition ${
+                className={`relative shrink-0 pb-2 text-sm font-semibold uppercase tracking-wide transition ${
                   tab === t ? "text-[#F97316]" : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -283,7 +304,7 @@ function ExperienciasPageContent() {
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2 self-end md:self-auto">
+          <div className="flex shrink-0 items-center gap-2">
             <button
               type="button"
               aria-label="Vista cuadrícula"
@@ -329,7 +350,7 @@ function ExperienciasPageContent() {
                   : "flex flex-col divide-y divide-slate-200"
               }
             >
-              {filtered.map((e) => {
+              {visibleExperiences.map((e) => {
                 const anchorId = experienciaAnchorId(e.id)
                 const isHighlighted = highlightAnchor === anchorId
                 return (
@@ -413,12 +434,31 @@ function ExperienciasPageContent() {
                 </article>
                 )
               })}
+
+              {!showAllExperiences && collapsedExperiences.length > 0 ? (
+                <div
+                  className={
+                    view === "grid"
+                      ? "flex justify-center sm:col-span-2"
+                      : "flex justify-center border-t border-slate-200 py-8"
+                  }
+                >
+                  <button
+                    type="button"
+                    onClick={() => setShowAllExperiences(true)}
+                    className="inline-flex shrink-0 rounded-full border-2 border-[#F97316] px-5 py-2 text-sm font-semibold text-[#F97316] transition hover:bg-orange-50"
+                  >
+                    Ver más
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <SitePageFooter />
+      </main>
     </div>
   )
 }

@@ -18,6 +18,8 @@ import {
 import { useState } from "react"
 import CountdownTimer from "../../components/countdown-timer"
 import Navbar from "@/components/Navbar"
+import PromoBottomBar from "@/components/floating-cta"
+import { WOMPI_CHECKOUT_URL } from "@/lib/site-config"
 import TestimonialsCarousel from "../../components/testimonials-carousel"
 import Image from "next/image"
 import Link from "next/link"
@@ -175,12 +177,15 @@ export default function BootcampPage() {
   ]
 
   return (
-    <main className="min-h-screen">
+    <main className="relative min-h-screen bg-white">
       <Navbar />
 
       {/* Hero Section */}
-      <section id="inicio" className="relative overflow-hidden bg-slate-900 pb-20 pt-28 lg:pb-28 lg:pt-36">
-        <div className="absolute inset-0">
+      <section
+        id="inicio"
+        className="eurekai-hero-section relative min-h-[min(90vh,860px)] overflow-hidden bg-slate-900 pb-20 lg:pb-28"
+      >
+        <div className="absolute inset-0 z-0">
           <Image
             src="/banner.jpg"
             alt="Bootcamp presencial"
@@ -192,7 +197,7 @@ export default function BootcampPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-slate-950/70" />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-6">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
               <span className="text-balance">
@@ -820,7 +825,7 @@ export default function BootcampPage() {
 
           <div className="mt-10 flex flex-col items-center">
             <a
-              href="https://checkout.wompi.co/l/P9hY3x"
+              href={WOMPI_CHECKOUT_URL}
               target="_blank"
               rel="noreferrer noopener"
               className="inline-flex rounded-full bg-[#fd7914] px-12 py-5 text-2xl font-bold uppercase tracking-wide text-white shadow-lg shadow-[#fd7914]/40 transition hover:bg-[#fd7914] sm:px-16"
@@ -973,7 +978,9 @@ export default function BootcampPage() {
         </div>
       </section>
 
-      <section className="bg-black">
+      <footer className="relative bg-black" data-site-footer>
+        <PromoBottomBar />
+        <div className="footer-body">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row">
           <Link href="/bootcamp" className="flex items-center gap-3">
             <Image
@@ -986,7 +993,8 @@ export default function BootcampPage() {
           </Link>
           <p className="text-sm text-white/65">© 2025 EurekAI. Todos los derechos reservados</p>
         </div>
-      </section>
+        </div>
+      </footer>
 
     </main>
   )

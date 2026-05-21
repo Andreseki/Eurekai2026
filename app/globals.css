@@ -168,3 +168,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hero bajo el nav sticky: la foto sube detrás del menú sin hueco blanco del body */
+:root {
+  --spacing: 0.25rem;
+  --eurekai-nav-total: 7.5rem;
+}
+
+.eurekai-hero-section {
+  margin-top: calc(-1 * var(--eurekai-nav-total));
+  padding-top: calc(var(--eurekai-nav-total) + 1.25rem);
+}
+

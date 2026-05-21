@@ -1,6 +1,6 @@
 "use client"
 
-import Footer from "@/components/Footer"
+import SitePageFooter from "@/components/site-page-footer"
 import Navbar from "@/components/Navbar"
 import { useSiteModals } from "@/components/site-modals-provider"
 import { Brain, Instagram, Lightbulb, Linkedin, Target } from "lucide-react"
@@ -34,8 +34,9 @@ export default function EurekAiNosotrosPage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
 
-      <section className="relative min-h-[460px] overflow-hidden bg-[#0F172A] text-white lg:min-h-[520px]">
-        <div className="absolute inset-0 overflow-hidden">
+      <main className="relative flex flex-1 flex-col">
+      <section className="eurekai-hero-section relative min-h-[460px] overflow-hidden bg-[#0F172A] text-white lg:min-h-[520px]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
             src="/quienessomos.jpg"
             alt="Equipo EurekAI"
@@ -46,14 +47,15 @@ export default function EurekAiNosotrosPage() {
           />
         </div>
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[min(100%,46rem)] bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(15,23,42,0.88)_14%,rgba(15,23,42,0.72)_32%,rgba(15,23,42,0.35)_52%,rgba(15,23,42,0.06)_72%,transparent_100%)]"
+          className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[min(100%,46rem)] bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(15,23,42,0.88)_14%,rgba(15,23,42,0.72)_32%,rgba(15,23,42,0.35)_52%,rgba(15,23,42,0.06)_72%,transparent_100%)]"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[min(100%,30rem)] bg-[linear-gradient(90deg,rgba(2,6,23,0.65)_0%,transparent_100%)]"
+          className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[min(100%,30rem)] bg-[linear-gradient(90deg,rgba(2,6,23,0.65)_0%,transparent_100%)]"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto flex min-h-[460px] max-w-6xl flex-col justify-center px-6 py-20 lg:min-h-[520px] lg:py-28">
+
+        <div className="relative z-10 mx-auto flex min-h-[360px] max-w-6xl flex-col justify-center px-6 pb-12 md:min-h-[400px] lg:min-h-[420px]">
           <div className="max-w-xl text-left">
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/90">Quiénes somos</p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight md:text-5xl">
@@ -277,7 +279,8 @@ export default function EurekAiNosotrosPage() {
         </div>
       </section>
 
-      <Footer />
+      <SitePageFooter />
+      </main>
     </div>
   )
 }

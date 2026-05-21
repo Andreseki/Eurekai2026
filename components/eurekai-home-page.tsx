@@ -1,6 +1,7 @@
 "use client"
 
-import Footer from "@/components/Footer"
+import "@/styles/home-page.css"
+import SitePageFooter from "@/components/site-page-footer"
 import Navbar from "@/components/Navbar"
 import TestimonialsCarousel from "@/components/testimonials-carousel"
 import { useSiteModals } from "@/components/site-modals-provider"
@@ -105,10 +106,8 @@ function EyebrowOrange({ children }: { children: ReactNode }) {
 
 function EyebrowNavy({ children }: { children: ReactNode }) {
   return (
-    <p className="text-center">
-      <span className="inline-block rounded bg-[#0F172A] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-white">
-        {children}
-      </span>
+    <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-[#0F172A]">
+      {children}
     </p>
   )
 }
@@ -129,8 +128,9 @@ export default function EurekAiHomePage() {
     <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[#0F172A] pb-24 pt-24 text-white lg:pb-32 lg:pt-32">
-        <div className="absolute inset-0">
+      <main className="relative flex flex-1 flex-col">
+      <section className="eurekai-hero-section relative min-h-[min(92vh,880px)] overflow-hidden bg-[#0F172A] pb-24 text-white lg:pb-32">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/iniciohero.jpg"
             alt="Equipos construyendo con metodología práctica"
@@ -140,7 +140,8 @@ export default function EurekAiHomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/95 via-[#0F172A]/75 to-[#0F172A]/25" />
         </div>
-        <div className="relative z-10 mx-auto max-w-6xl px-6">
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-8">
           <h1 className="max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl">
             Construcción de habilidades 3i:
             <br />
@@ -162,8 +163,8 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="home-porque py-16 lg:py-24">
+        <div className="home-section-inner">
           <EyebrowNavy>POR QUÉ</EyebrowNavy>
           <div className="mt-8 flex justify-center">
             <Image
@@ -174,13 +175,15 @@ export default function EurekAiHomePage() {
               className="h-16 w-auto object-contain md:h-20"
             />
           </div>
-          <h2 className="mx-auto mt-8 max-w-3xl text-center text-3xl font-bold text-[#0F172A] md:text-4xl">
+          <h2 className="mx-auto mt-8 max-w-4xl text-center text-3xl font-bold text-[#0F172A] md:text-4xl">
             Las habilidades que necesitas para el{" "}
             <span className="text-[#F97316]">trabajo del futuro</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-lg text-slate-600">
+          <p className="mx-auto mt-5 max-w-4xl text-center text-lg leading-relaxed text-slate-600">
             Ayudamos a personas y organizaciones a aprender, innovar y transformar sus realidades con
-            soluciones prácticas y aplicables.
+            soluciones prácticas y aplicables. Construimos experiencias donde la inteligencia artificial
+            y la innovación se convierten en herramientas reales para decidir, prototipar e implementar
+            con impacto medible en tu equipo y en tu negocio.
           </p>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {[
@@ -202,7 +205,7 @@ export default function EurekAiHomePage() {
             ].map((card) => (
               <div
                 key={card.title}
-                className="rounded-xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md"
+                className="home-porque-card rounded-xl border bg-white p-8 shadow-sm transition hover:shadow-md"
               >
                 <card.Icon className="h-10 w-10 text-[#F97316]" strokeWidth={1.75} />
                 <h3 className="mt-4 text-lg font-bold text-[#0F172A]">{card.title}</h3>
@@ -213,16 +216,8 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-t-2 border-[#0F172A]/10 bg-white py-16 lg:py-24">
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[min(100%,40rem)] bg-[linear-gradient(90deg,rgba(15,23,42,0.14)_0%,rgba(15,23,42,0.06)_40%,rgba(255,255,255,0)_82%)]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-y-0 left-0 w-[min(100%,22rem)] bg-[linear-gradient(90deg,rgba(2,6,23,0.2)_0%,transparent_100%)]"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-6xl px-6">
+      <section className="home-camino border-t-2 border-[#0F172A]/10 py-16 lg:py-24">
+        <div className="home-section-inner relative">
           <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-600">
             ESCOGE TU CAMINO
           </p>
@@ -281,8 +276,8 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="border-y border-slate-100 bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="home-camino border-y border-slate-100 py-16 lg:py-24">
+        <div className="home-section-inner">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4">
               <h2 className="text-4xl font-bold leading-tight text-[#0F172A] md:text-5xl">
@@ -391,8 +386,8 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="home-ventajas py-16 lg:py-24">
+        <div className="home-section-inner">
           <EyebrowOrange>VENTAJAS</EyebrowOrange>
           <h2 className="mt-4 text-center text-3xl font-bold text-[#0F172A] md:text-4xl">
             Lo que nos diferencia
@@ -402,7 +397,7 @@ export default function EurekAiHomePage() {
             <br className="hidden sm:block" />
             Somos la intersección única entre Método + IA + Comunidad.
           </p>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 justify-items-center gap-6 md:grid-cols-3">
             {[
               {
                 title: "Aplicación de casos reales",
@@ -422,10 +417,10 @@ export default function EurekAiHomePage() {
             ].map((c) => (
               <div
                 key={c.title}
-                className="relative min-h-[240px] overflow-hidden rounded-3xl border border-slate-200 shadow-md"
+                className="home-ventaja-card relative mx-auto overflow-hidden rounded-3xl border border-[#080808]/15 shadow-md"
               >
-                <Image src={c.img} alt="" fill className="object-cover brightness-[0.55]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-[#0F172A]/50 to-transparent" />
+                <Image src={c.img} alt="" fill className="object-cover brightness-[0.65]" />
+                <div className="home-ventaja-overlay absolute inset-0" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                   <h3 className="text-lg font-bold">{c.title}</h3>
                   <p className="mt-2 text-sm text-white/90">{c.body}</p>
@@ -436,18 +431,24 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-100 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="home-testimonios py-16 lg:py-24">
+        <div className="home-section-inner">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-slate-800 md:text-4xl lg:text-5xl">
-              Experiencias <span className="text-[#fd7914]">Transformadoras</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-xl text-slate-600">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+              Experiencias transformadoras
+            </p>
+            <h2 className="mt-3 text-3xl font-bold text-[#0F172A] md:text-4xl lg:text-5xl">Testimonios</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-slate-600 md:text-xl">
               Escucha de ex-alumnos reales que han cambiado su futuro a partir de nuestros cursos.
             </p>
           </div>
 
-          <TestimonialsCarousel testimonials={homeTestimonials} />
+          <TestimonialsCarousel
+            testimonials={homeTestimonials}
+            desktopColumns={3}
+            controlsPosition="bottom"
+            cardSize="home"
+          />
         </div>
       </section>
 
@@ -479,15 +480,15 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-24">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="home-facilitadores py-16 lg:py-24">
+        <div className="home-section-inner">
           <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-500">EQUIPO</p>
           <h2 className="mt-4 text-center text-3xl font-bold text-[#0F172A] md:text-4xl">Facilitadores</h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
             Profesionales con experiencia en transformación digital
           </p>
 
-          <div className="relative mt-12 overflow-hidden rounded-2xl bg-[#0F172A] p-8 text-white shadow-xl md:p-10">
+          <div className="mt-12 overflow-hidden rounded-2xl bg-[#0F172A] p-8 text-white shadow-xl md:p-10">
             <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full border-2 border-white/30 bg-slate-800">
@@ -539,40 +540,41 @@ export default function EurekAiHomePage() {
                 </div>
               </div>
             </div>
-            <div className="mt-10 flex items-center justify-center gap-8">
-              <button
-                type="button"
-                onClick={fPrev}
-                className="text-white/70 transition hover:text-white"
-                aria-label="Anterior facilitador"
-              >
-                <ChevronLeft className="h-7 w-7" />
-              </button>
-              <div className="flex gap-2">
-                {facilitadores.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Facilitador ${i + 1}`}
-                    onClick={() => setFacIdx(i)}
-                    className={`h-2 rounded-full transition ${
-                      i === facIdx ? "w-8 bg-white" : "w-2 bg-white/35 hover:bg-white/55"
-                    }`}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={fNext}
-                className="text-white/70 transition hover:text-white"
-                aria-label="Siguiente facilitador"
-              >
-                <ChevronRight className="h-7 w-7" />
-              </button>
-            </div>
           </div>
 
-          <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50/80 p-8 text-center">
+          <div className="mt-8 flex items-center justify-center gap-8">
+            <button
+              type="button"
+              onClick={fPrev}
+              className="text-slate-500 transition hover:text-[#0F172A]"
+              aria-label="Anterior facilitador"
+            >
+              <ChevronLeft className="h-7 w-7" />
+            </button>
+            <div className="flex gap-2">
+              {facilitadores.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Facilitador ${i + 1}`}
+                  onClick={() => setFacIdx(i)}
+                  className={`h-2 rounded-full transition ${
+                    i === facIdx ? "w-8 bg-[#0F172A]" : "w-2 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={fNext}
+              className="text-slate-500 transition hover:text-[#0F172A]"
+              aria-label="Siguiente facilitador"
+            >
+              <ChevronRight className="h-7 w-7" />
+            </button>
+          </div>
+
+          <div className="mt-12 p-8 text-center">
             <h3 className="text-xl font-bold text-[#0F172A]">Sé parte del equipo</h3>
             <p className="mx-auto mt-3 max-w-lg text-slate-600">
               Buscamos facilitadores y mentores apasionados por la educación en IA
@@ -588,15 +590,15 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-16 lg:py-24">
-        <div className="mx-auto max-w-3xl px-6">
+      <section className="home-faq py-16 lg:py-24">
+        <div className="home-section-inner max-w-3xl">
           <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
             PREGUNTAS FRECUENTES
           </p>
           <h2 className="mt-4 text-center text-3xl font-bold text-[#0F172A] md:text-4xl">
             Respuestas a <span className="text-[#F97316]">lo que importa</span>
           </h2>
-          <div className="mt-10 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
+          <div className="mt-10 divide-y divide-[#080808]/20 border-y border-[#080808]/20">
             {faqItems.map((item, i) => {
               const open = faqOpen === i
               return (
@@ -614,7 +616,7 @@ export default function EurekAiHomePage() {
                     />
                   </button>
                   {open ? (
-                    <div className="border-t border-slate-100 px-5 py-4 text-sm leading-relaxed text-slate-600">
+                    <div className="border-t border-[#080808]/15 px-5 py-4 text-sm leading-relaxed text-slate-600">
                       {item.a}
                     </div>
                   ) : null}
@@ -634,7 +636,8 @@ export default function EurekAiHomePage() {
         </div>
       </section>
 
-      <Footer />
+      <SitePageFooter />
+      </main>
     </div>
   )
 }

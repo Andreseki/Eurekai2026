@@ -1,0 +1,64 @@
+/* Home — estilos por sección (QA diseño). Contenedor base 1280px. */
+
+.home-section-inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* POR QUÉ */
+.home-porque {
+  background-color: #f4f4f4;
+}
+
+.home-porque-card {
+  border-color: #080808;
+}
+
+/* Escoge tu camino */
+.home-camino {
+  background-color: #ffffff;
+}
+
+/* Ventajas */
+.home-ventajas {
+  background-color: #f4f4f4;
+}
+
+.home-ventaja-card {
+  height: 413px;
+  max-width: 414px;
+  width: 100%;
+}
+
+.home-ventaja-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(15, 23, 42, 0.38) 45%,
+    transparent 100%
+  );
+}
+
+/* Testimonios */
+.home-testimonios {
+  background-color: #ffffff;
+}
+
+.home-testimonio-card {
+  width: 100%;
+  max-width: 374px;
+  height: 380px;
+}
+
+/* Facilitadores */
+.home-facilitadores {
+  background-color: #ffffff;
+}
+
+/* FAQ */
+.home-faq {
+  background-color: #f4f4f4;
+}
