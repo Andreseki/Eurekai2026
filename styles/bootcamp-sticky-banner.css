@@ -1,0 +1,109 @@
+/* Barra inferior bootcamp — exactamente 1280×80 px, centrada, pegada abajo */
+
+:root {
+  --bootcamp-bar-orange: #f97316;
+  --bootcamp-bar-width: 1280px;
+  --bootcamp-bar-height: 80px;
+}
+
+.bootcamp-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  z-index: 85;
+  width: min(var(--bootcamp-bar-width), calc(100% - 1.5rem));
+  max-width: var(--bootcamp-bar-width);
+  height: var(--bootcamp-bar-height);
+  border-radius: 12px 12px 0 0;
+  background-color: var(--bootcamp-bar-orange);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(100%);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.bootcamp-sticky-bar--visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.bootcamp-sticky-bar__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 0 2.5rem;
+  box-sizing: border-box;
+}
+
+.bootcamp-sticky-bar__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.bootcamp-sticky-bar__date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.95);
+}
+
+.bootcamp-sticky-bar__date svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.bootcamp-sticky-bar__cta {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  padding: 0.625rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--bootcamp-bar-orange);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.bootcamp-sticky-bar__cta:hover {
+  background-color: #f8fafc;
+}
+
+@media (max-width: 767px) {
+  .bootcamp-sticky-bar {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: var(--bootcamp-bar-height);
+    border-radius: 0;
+  }
+
+  .bootcamp-sticky-bar__inner {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.875rem 1.25rem;
+    text-align: center;
+  }
+
+  .bootcamp-sticky-bar__date {
+    justify-content: center;
+  }
+
+  .bootcamp-sticky-bar__title {
+    font-size: 0.9375rem;
+  }
+}

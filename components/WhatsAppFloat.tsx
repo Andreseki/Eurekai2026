@@ -3,8 +3,9 @@
 import Image from "next/image"
 import Link from "next/link"
 
-const WHATSAPP_HREF =
-  "https://wa.me/573150564078?text=Hola%20EurekAI,%20quiero%20informacion"
+import { whatsappUrl } from "@/lib/site-config"
+
+const WHATSAPP_HREF = whatsappUrl("Hola EurekAI, quiero información")
 
 export default function WhatsAppFloat() {
   return (

@@ -29,9 +29,20 @@ export default function Navbar() {
       <div className="relative z-[101] bg-[#F97316] py-2 text-center text-white">
         <Link
           href="/bootcamp"
-          className="inline-block px-3 text-xs font-semibold leading-snug transition hover:underline md:text-sm"
+          className="inline-block px-3 text-xs leading-snug transition hover:underline md:text-sm"
         >
-          Innovación potenciada con Inteligencia Artificial · Bootcamp · Presencial · 30 Mayo · Bogotá
+          {pathname === "/bootcamp" ? (
+            <>
+              <span className="font-extrabold">-SOLD OUT-</span> Innovación potenciada con
+              Inteligencia Artificial · Bootcamp · Presencial · 30 Mayo · Bogotá{" "}
+              <span className="font-extrabold">-SOLD OUT-</span>
+            </>
+          ) : (
+            <span className="font-semibold">
+              Innovación potenciada con Inteligencia Artificial · Bootcamp · Presencial · 30 Mayo ·
+              Bogotá
+            </span>
+          )}
         </Link>
       </div>
 

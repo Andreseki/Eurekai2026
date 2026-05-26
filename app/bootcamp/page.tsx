@@ -9,17 +9,19 @@ import {
   BadgeCheck,
   Shield,
   Settings,
-  Instagram,
-  Linkedin,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"
 import { useState } from "react"
 import CountdownTimer from "../../components/countdown-timer"
+// import BootcampStickyBanner from "@/components/bootcamp/BootcampStickyBanner"
+import InfoModal from "@/components/bootcamp/InfoModal"
+import InscripcionModal from "@/components/bootcamp/InscripcionModal"
+import TrainersSection from "@/components/bootcamp/TrainersSection"
 import Navbar from "@/components/Navbar"
 // import PromoBottomBar from "@/components/floating-cta"
-import { WOMPI_CHECKOUT_URL } from "@/lib/site-config"
+import { WOMPI_CHECKOUT_URL, whatsappUrl } from "@/lib/site-config"
 import TestimonialsCarousel from "../../components/testimonials-carousel"
 import Image from "next/image"
 import Link from "next/link"
@@ -32,8 +34,7 @@ export default function BootcampPage() {
     facilitadores: "#facilitadores",
     preguntas: "#preguntas",
     reserva: "#reserva",
-    whatsapp:
-      "https://wa.me/573150564078?text=Hola%20EurekAI,%20quiero%20informacion%20del%20bootcamp",
+    whatsapp: whatsappUrl("Hola EurekAI, quiero información del bootcamp"),
   }
 
   const brandLogos = [
@@ -90,6 +91,8 @@ export default function BootcampPage() {
     },
   ]
 
+  const [showInfoModal, setShowInfoModal] = useState(false)
+  const [showInscripcionModal, setShowInscripcionModal] = useState(false)
   const [benefitsPage, setBenefitsPage] = useState(0)
   const benefitCardsPerPage = 3
   const benefitPageCount = Math.ceil(benefitCards.length / benefitCardsPerPage)
@@ -180,58 +183,73 @@ export default function BootcampPage() {
     <main className="relative min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section — imagen soldout.png */}
       <section
         id="inicio"
-        className="eurekai-hero-section relative min-h-[min(90vh,860px)] overflow-hidden bg-slate-900 pb-20 lg:pb-28"
+        className="eurekai-hero-section relative min-h-[min(78vh,760px)] overflow-hidden bg-slate-900 lg:min-h-[min(82vh,820px)]"
       >
         <div className="absolute inset-0 z-0">
           <Image
-            src="/banner.jpg"
-            alt="Bootcamp presencial"
+            src="/soldout.png"
+            alt="Bootcamp de innovación potenciada con Inteligencia Artificial — Sold Out"
             fill
-            className="object-cover brightness-110 contrast-90"
+            className="scale-[1.14] object-cover object-[80%_center]"
             priority
+            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-slate-950/50" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/30 to-slate-950/70" />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-slate-950/96 from-0% via-slate-950/70 via-28% to-transparent to-52%"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-[linear-gradient(108deg,rgba(2,6,23,0.62)_0%,rgba(2,6,23,0.12)_40%,transparent_62%)]"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-slate-950/22 via-transparent to-slate-950/28"
+            aria-hidden
+          />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              <span className="text-balance">
-                Bootcamp
-                <br />
-                de innovación
-                <br />
-                potenciada con
-                <br />
-                <span className="text-[#fd7914]">Inteligencia Artificial.</span>
-              </span>
+        <div className="relative z-10 mx-auto flex min-h-[min(78vh,760px)] max-w-7xl flex-col items-center gap-10 px-6 py-16 lg:min-h-[min(82vh,820px)] lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+          <div className="w-full max-w-xl font-sans lg:max-w-2xl">
+            <h1 className="text-4xl font-bold leading-[1.12] text-white md:text-5xl lg:text-[3.25rem]">
+              Bootcamp de innovación
+              <br />
+              potenciada con{" "}
+              <span className="text-[#fd7914]">Inteligencia Artificial.</span>
             </h1>
 
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-200 md:text-xl">
-              Tu empresa, tus gerentes y tu equipo no quieren más demos de IA ni innovaciones sin sentido.
-              Quieren ROI.
-              nete al único bootcamp que te permite entrar con un reto de negocio a las 8:00 AM y salir con un
-              prototipo funcional y un plan validado a las 6:00 PM.
-            </p>
-            <p className="mt-6 max-w-3xl text-3xl font-bold uppercase leading-tight text-white sm:text-4xl md:text-[2.8rem] lg:text-[3rem]">
-              30 DE MAYO
-            </p>
-            <p className="mt-2 max-w-3xl text-lg font-semibold leading-relaxed text-[#fd7914] md:text-xl">
-              Hannah Hops, Usaquén, Bogotá
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-100 md:text-lg lg:text-xl">
+              Tu empresa, tus gerentes y tu equipo no quieren más demos de IA ni innovaciones sin
+              sentido. Quieren ROI. Únete al único bootcamp que te permite entrar con un reto de
+              negocio a las 8:00 AM y salir con un prototipo funcional y un plan validado a las 6:00
+              PM.
             </p>
 
+            <div className="mt-8 inline-block rounded-md border-2 border-dashed border-white px-8 py-4 text-center">
+              <p className="text-lg font-semibold text-white md:text-xl">30 de Mayo</p>
+              <p className="mt-1 text-2xl font-extrabold tracking-wide text-white md:text-3xl">SOLD OUT</p>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-[min(72vw,300px)] shrink-0 lg:mx-0 lg:w-[340px]">
+            <Image
+              src="/soldoutt.png"
+              alt="Sold Out"
+              width={680}
+              height={680}
+              className="h-auto w-full object-contain mix-blend-screen"
+              priority
+            />
           </div>
         </div>
       </section>
 
-      {/* Reserva rápida Section */}
+      {/* Reserva rápida — video + countdown */}
       <section id="cursos" className="bg-white pt-10 pb-14 lg:pt-10 lg:pb-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(280px,360px)_1fr] lg:gap-10">
+          <div className="mx-auto grid max-w-[820px] items-start gap-8 lg:grid-cols-[minmax(280px,360px)_minmax(0,360px)] lg:gap-10">
             <div className="order-2 mx-auto w-full max-w-[360px] lg:order-1 lg:mx-0">
               <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
                 <video
@@ -246,33 +264,36 @@ export default function BootcampPage() {
             </div>
 
             <div className="contents lg:order-2 lg:block lg:pl-5 lg:text-left">
-              <div className="order-1 text-center lg:text-left">
-                <p className="mt-[10px] text-2xl font-extrabold uppercase tracking-tight text-[#fd7914] sm:text-[2.1rem]">¡FALTAN POCOS DÍAS!</p>
-                <div className="mt-4 flex justify-center lg:justify-start">
-                  <CountdownTimer targetDate="2026-05-30T08:00:00-05:00" variant="boxedLight" />
-                </div>
-              </div>
-
-              <div className="order-3 mt-8">
-                <div className="mt-5 flex flex-col items-center gap-6 lg:items-start">
-                  <div className="flex flex-col items-center justify-center gap-4 lg:flex-row lg:justify-start lg:gap-5">
-                    <div className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28">
-                      <div className="absolute inset-0 rounded-full border-[5px] border-[#d9d9d9]" />
-                      <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_360deg,_#fd7914_0deg_108deg,_transparent_108deg_360deg)]" />
-                      <div className="absolute inset-[6px] rounded-full bg-white" />
-                      <div className="relative flex flex-col items-center leading-none">
-                        <span className="text-[3rem] font-extrabold text-[#fd7914] sm:text-[3.2rem]">6</span>
-                        <span className="-mt-0.5 text-[0.68rem] font-extrabold uppercase tracking-[0.08em] text-[#fd7914]">Inscritos</span>
-                      </div>
-                    </div>
-                    <p className="max-w-[16ch] text-center text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl lg:max-w-[18ch] lg:text-left lg:text-[2.85rem]">
-                      Son solo 25 cupos
-                    </p>
-                  </div>
-                  <p className="max-w-[18ch] text-center text-[2rem] font-extrabold leading-tight text-slate-900 sm:text-[2.35rem] lg:max-w-none lg:text-left lg:text-[2.6rem]">
-                    Asegura tu entrada 2026 a precio del 2025.
+              <div className="order-1 mt-[15px] flex w-full flex-col font-sans text-[#333333] lg:max-w-[360px]">
+                <div className="mt-[10px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
+                  <p className="text-lg font-bold leading-none">26 de Mayo</p>
+                  <p className="mt-1 text-[1.75rem] font-extrabold leading-none">
+                    100% COMPLETO
                   </p>
-                  <p className="mt-2 text-3xl font-extrabold leading-tight text-[#fd7914] sm:text-4xl lg:text-[2.8rem]">¡Ahorra un 20% hoy!</p>
+                  <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                    EDICIÓN AGOTADA
+                  </p>
+                </div>
+
+                <h2 className="mt-[25px] text-[1.68rem] font-extrabold leading-[1.14] text-black">
+                  ¡Inscripciones cerradas para mayo!
+                </h2>
+
+                <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
+                  Hemos completado el cupo máximo de profesionales para nuestra edición de este mes.
+                  Abrimos oficialmente la preventa para nuestra próxima experiencia presencial el{" "}
+                  <strong className="font-bold">25 de julio</strong> en Bogotá.
+                </p>
+                <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
+                  Regístrate en la lista de acceso prioritario para asegurar tu cupo antes de la
+                  apertura general de ventas y recibir un beneficio exclusivo.
+                </p>
+
+                <div className="mt-[21px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
+                  <p className="text-[1.75rem] font-extrabold leading-none">25 de Julio</p>
+                  <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
+                    NUEVA FECHA
+                  </p>
                 </div>
               </div>
             </div>
@@ -314,13 +335,15 @@ export default function BootcampPage() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <a
-              href="#reserva-middle"
-              className="inline-flex rounded-full bg-[#fd7914] px-12 py-4 text-base font-bold uppercase text-white shadow-lg shadow-[#fd7914]/30 transition hover:bg-[#ff7a29]"
+            <button
+              type="button"
+              onClick={() => setShowInscripcionModal(true)}
+              className="inline-flex rounded-full bg-[#fd7914] px-12 py-4 text-base font-bold text-white shadow-lg shadow-[#fd7914]/30 transition hover:bg-[#ff7a29]"
             >
-              QUIERO RESERVAR MI CUPO AHORA
-            </a>
+              Reservar mi lugar
+            </button>
           </div>
+
         </div>
       </section>
 
@@ -643,87 +666,7 @@ export default function BootcampPage() {
         </div>
       </section>
 
-      {/* Entrenadores Section */}
-      <section id="facilitadores" className="bg-slate-100 py-16 lg:py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          {/* Título */}
-          <h2 className="text-center text-3xl font-bold leading-tight text-slate-800 md:text-4xl lg:text-5xl">
-            Tus entrenadores en el campo de batalla
-            <br />
-            <span className="text-[#fd7914]">Y con muchas horas de vuelo.</span>
-          </h2>
-
-          {/* Perfiles */}
-          <div className="mt-16 grid gap-12 md:grid-cols-2 md:gap-16">
-            {/* Andrés Rubiano */}
-            <div className="flex flex-col items-center text-center">
-              <div className="relative h-56 w-56 overflow-hidden rounded-full bg-slate-300 shadow-xl ring-4 ring-white lg:h-64 lg:w-64">
-                <Image
-                  src="/andreswht.png"
-                  alt="Andrés Rubiano"
-                  fill
-                  style={{ objectPosition: "center 38%" }}
-                  className="object-cover"
-                  sizes="240px"
-                />
-              </div>
-              {/* Social Icons */}
-              <div className="mt-4 flex items-center gap-3" aria-label="Iconos sociales visuales">
-                <a
-                  href="https://linkedin.com/in/andresrubiano32"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-full border border-slate-300 bg-white p-3 shadow-sm transition hover:bg-slate-50"
-                  aria-label="LinkedIn de Andrés Rubiano"
-                >
-                  <Linkedin className="h-4 w-4 text-slate-700" />
-                </a>
-              </div>
-              <h3 className="mt-4 text-[1.18rem] font-bold text-[#fd7914] md:text-[1.35rem]">Andrés Rubiano</h3>
-              <p className="mt-2 max-w-[20rem] text-center text-[1.03rem] leading-8 text-slate-700 md:max-w-[24rem] md:text-[1.08rem]">
-                <strong>CEO eki | Consultor experto, 15+ años de experiencia en innovación corporativa con impacto y educación ejecutiva.</strong> Ha implementado sistemas de innovación en 60+ empresas de LATAM, desde startups hasta corporativos.
-              </p>
-            </div>
-
-            {/* César Trujillo */}
-            <div className="flex flex-col items-center text-center">
-              <div className="relative h-56 w-56 overflow-hidden rounded-full bg-slate-300 shadow-xl ring-4 ring-white lg:h-64 lg:w-64">
-                <Image
-                  src="/cesarwht.jpg"
-                  alt="César Trujillo"
-                  fill
-                  className="object-cover object-center"
-                  sizes="240px"
-                />
-              </div>
-              {/* Social Icons */}
-              <div className="mt-4 flex items-center gap-3" aria-label="Iconos sociales visuales">
-                <span className="rounded-full border border-slate-300 bg-white p-3 shadow-sm">
-                  <Instagram className="h-4 w-4 text-slate-700" />
-                </span>
-                <a
-                  href="https://linkedin.com/in/cesartrujillo"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="rounded-full border border-slate-300 bg-white p-3 shadow-sm transition hover:bg-slate-50"
-                  aria-label="LinkedIn de César Trujillo"
-                >
-                  <Linkedin className="h-4 w-4 text-slate-700" />
-                </a>
-              </div>
-              <h3 className="mt-4 text-[1.18rem] font-bold text-[#fd7914] md:text-[1.35rem]">César Trujillo</h3>
-              <p className="mt-2 max-w-[20rem] text-balance text-center text-pretty text-[1.03rem] leading-8 text-slate-700 md:max-w-[24rem] md:text-[1.08rem]">
-                <strong>
-                  Socio Fundador SupermAInds
-                  <br />
-                  Bogotá Chapter Lead para The AI Collective Cursando un Doctorado en IA + ML. Walsh College (USA)
-                </strong>{" "}
-                30+ años de experiencia en la intersección entre tecnología, humanidades{"\u00A0"}y{"\u00A0"}negocios.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TrainersSection />
 
       {/* Marcas / Logos Section */}
       <section className="bg-white py-16 lg:py-20">
@@ -978,7 +921,16 @@ export default function BootcampPage() {
         </div>
       </section>
 
+      <InfoModal open={showInfoModal} onClose={() => setShowInfoModal(false)} />
+      <InscripcionModal
+        open={showInscripcionModal}
+        onClose={() => setShowInscripcionModal(false)}
+      />
+
       <footer className="relative bg-black" data-site-footer>
+        {/* Banner inferior/sticky oculto para esta versión del bootcamp. */}
+        {/* <BootcampStickyBanner onOpenInscripcion={() => setShowInscripcionModal(true)} /> */}
+        {/* Barra anterior (1280×80): descomenta PromoBottomBar si la necesitas */}
         {/* <PromoBottomBar /> */}
         <div className="footer-body">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row">

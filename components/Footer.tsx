@@ -5,8 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 // import PromoBottomBar from "@/components/floating-cta"
 
-const WHATSAPP_HREF =
-  "https://wa.me/573150564078?text=Hola%20EurekAI,%20quiero%20conversar%20con%20ustedes"
+import { whatsappUrl } from "@/lib/site-config"
+
+const WHATSAPP_HREF = whatsappUrl("Hola EurekAI, quiero conversar con ustedes")
 
 export default function Footer() {
   return (
