@@ -266,7 +266,7 @@ export default function BootcampPage() {
             <div className="contents lg:order-2 lg:block lg:pl-5 lg:text-left">
               <div className="order-1 mt-[15px] flex w-full flex-col font-sans text-[#333333] lg:max-w-[360px]">
                 <div className="mt-[10px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
-                  <p className="text-lg font-bold leading-none">26 de Mayo</p>
+                  <p className="text-lg font-bold leading-none">30 de Mayo</p>
                   <p className="mt-1 text-[1.75rem] font-extrabold leading-none">
                     100% COMPLETO
                   </p>

@@ -31,18 +31,9 @@ export default function Navbar() {
           href="/bootcamp"
           className="inline-block px-3 text-xs leading-snug transition hover:underline md:text-sm"
         >
-          {pathname === "/bootcamp" ? (
-            <>
-              <span className="font-extrabold">-SOLD OUT-</span> Innovación potenciada con
-              Inteligencia Artificial · Bootcamp · Presencial · 30 Mayo · Bogotá{" "}
-              <span className="font-extrabold">-SOLD OUT-</span>
-            </>
-          ) : (
-            <span className="font-semibold">
-              Innovación potenciada con Inteligencia Artificial · Bootcamp · Presencial · 30 Mayo ·
-              Bogotá
-            </span>
-          )}
+          <span className="font-extrabold">-SOLD OUT-</span> Innovación potenciada con Inteligencia
+          Artificial · Bootcamp · Presencial · 30 Mayo · Bogotá{" "}
+          <span className="font-extrabold">-SOLD OUT-</span>
         </Link>
       </div>
 
