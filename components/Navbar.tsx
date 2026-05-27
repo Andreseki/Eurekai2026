@@ -32,7 +32,8 @@ export default function Navbar() {
           className="inline-block px-3 text-xs leading-snug transition hover:underline md:text-sm"
         >
           <span className="font-extrabold">-SOLD OUT-</span> Innovación potenciada con Inteligencia
-          Artificial · Bootcamp · Presencial · 30 Mayo · Bogotá{" "}
+          Artificial · Bootcamp · Presencial ·{" "}
+          <span className="line-through decoration-2">30 Mayo</span> · Bogotá{" "}
           <span className="font-extrabold">-SOLD OUT-</span>
         </Link>
       </div>
