@@ -183,15 +183,15 @@ export default function BootcampPage() {
     <main className="relative min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero Section — imagen soldout.png */}
+      {/* Hero Section — imagen banner.jpg */}
       <section
         id="inicio"
         className="eurekai-hero-section relative min-h-[min(78vh,760px)] overflow-hidden bg-slate-900 lg:min-h-[min(82vh,820px)]"
       >
         <div className="absolute inset-0 z-0">
           <Image
-            src="/soldout.png"
-            alt="Bootcamp de innovación potenciada con Inteligencia Artificial — Sold Out"
+            src="/banner.jpg"
+            alt="Bootcamp de innovación potenciada con Inteligencia Artificial"
             fill
             className="scale-[1.14] object-cover object-[80%_center]"
             priority
