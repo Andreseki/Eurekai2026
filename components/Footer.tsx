@@ -66,20 +66,20 @@ export default function Footer() {
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Síguenos</p>
             <div className="mt-3 flex gap-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/eurekai.es/"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white transition hover:bg-[#F97316]"
-                aria-label="Instagram"
+                aria-label="Instagram EurekAI"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/eurekai-es/"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white transition hover:bg-[#F97316]"
-                aria-label="LinkedIn"
+                aria-label="LinkedIn EurekAI"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
