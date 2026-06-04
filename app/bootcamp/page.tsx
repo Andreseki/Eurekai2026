@@ -35,6 +35,9 @@ export default function BootcampPage() {
     preguntas: "#preguntas",
     reserva: "#reserva",
     whatsapp: whatsappUrl("Hola EurekAI, quiero información del bootcamp"),
+    whatsappEmpresa: whatsappUrl(
+      "Hola EurekAI, quiero llevar el Bootcamp a mi empresa y resolver un reto de mi organización",
+    ),
   }
 
   const brandLogos = [
@@ -178,6 +181,14 @@ export default function BootcampPage() {
       image: "/maria_isabel.jpeg",
     },
   ]
+
+  const empresaBeneficios = [
+    "Reto adaptado a la realidad de tu empresa",
+    "Soluciones diseñadas junto a líderes y equipos clave",
+    "Prototipo funcional construido durante la jornada",
+    "Plan de implementación accionable",
+    "Metodologías listas para aplicar desde el día siguiente",
+  ] as const
 
   return (
     <main className="relative min-h-screen bg-white">
@@ -523,6 +534,84 @@ export default function BootcampPage() {
         </div>
       </section>
 
+      {/* Bootcamp en tu empresa */}
+      <section className="relative overflow-hidden py-14 lg:py-20">
+        <div className="absolute inset-0">
+          <Image
+            src="/quieresllevar.jpg"
+            alt="¿Quieres llevar este Bootcamp a tu empresa?"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-slate-950/72" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-6 text-center text-white lg:px-8">
+          <div className="mx-auto max-w-[900px]">
+            <h2 className="text-3xl font-bold leading-tight text-balance text-white md:text-4xl lg:text-5xl">
+              ¿Quieres llevar este{" "}
+              <span className="text-[#fd7914]">Bootcamp a tu empresa?</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-[780px] text-lg font-medium leading-relaxed text-white/95 md:text-xl">
+              ¿Tienes un reto de negocio que tu organización aún no ha podido resolver?
+            </p>
+            <p
+              className="mx-auto mt-5 text-lg leading-relaxed text-white/90 md:text-xl"
+              style={{ textWrap: "pretty" }}
+            >
+              Entra a las 8:00 AM con un desafío real de tu empresa y sal a las 6:00 PM con un prototipo
+              funcional, una solución validada y una hoja de ruta clara para su implementación. Diseñamos una
+              experiencia personalizada donde aplicamos metodologías de innovación e Inteligencia Artificial
+              directamente sobre los retos específicos de tu organización.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 flex max-w-[1040px] flex-col gap-5 text-left md:mt-11 md:flex-row md:items-start md:gap-10">
+            <div className="w-full flex-1 md:max-w-[460px] md:pt-6">
+              <h3 className="text-[2rem] font-extrabold uppercase tracking-tight text-white">
+                Beneficios
+              </h3>
+              <ul className="mt-3 space-y-2 text-base font-semibold leading-relaxed text-white/95 md:text-lg">
+                {empresaBeneficios.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#fd7914]" strokeWidth={3} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="w-full flex-1 self-start">
+              <div className="rounded-2xl border border-white/15 bg-slate-950/60 p-5 backdrop-blur-md md:p-6">
+                <h3 className="text-[2rem] font-extrabold uppercase tracking-tight text-white">
+                  Acompañamiento posterior incluido
+                </h3>
+                <p
+                  className="mt-3 text-base leading-relaxed text-white/90 md:text-lg"
+                  style={{ textWrap: "pretty" }}
+                >
+                  Tu equipo no se queda solo después del bootcamp. Durante el mes siguiente realizamos 4 sesiones de
+                  acompañamiento (1 por semana) para apoyar la implementación, resolver bloqueos y asegurar que las
+                  iniciativas avanzan hacia resultados concretos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-11 flex justify-center md:mt-12">
+            <a
+              href={actionLinks.whatsappEmpresa}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex rounded-full bg-[#fd7914] px-10 py-4 text-base font-bold text-white shadow-lg shadow-[#fd7914]/35 transition hover:bg-[#ff7a29] md:px-14 md:py-5 md:text-lg"
+            >
+              Quiero resolver un reto de mi organización
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Agenda / Timeline Section */}
       <section className="bg-white py-16 lg:py-24">
         <div className="mx-auto max-w-6xl px-6">
@@ -729,18 +818,18 @@ export default function BootcampPage() {
 
         <div className="relative mx-auto max-w-[1440px] px-6 text-center text-white">
           <p className="text-lg font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-xl">
-            30 de mayo · Hannah Hops, Usaquén, Bogotá
+            25 de julio · Hannah Hops, Usaquén, Bogotá
           </p>
           <h2 id="reserva-middle" className="text-[4.4rem] font-extrabold uppercase tracking-[0.015em] text-[#fd7914] sm:text-[4.9rem] lg:text-[5.4rem]">
             Early Bird
           </h2>
           <p className="mt-3 text-[2.1rem] font-semibold text-white/90 sm:text-[2.5rem] lg:text-[2.8rem]">
-            Precio especial hasta el 25 de mayo
+            Precio especial hasta el 25 de julio
           </p>
 
           <div id="reserva-countdown" className="mx-auto mt-8 flex w-full max-w-[980px] justify-center rounded-[1.35rem] bg-white/10 px-3 py-3 shadow-[0_24px_60px_rgba(2,8,23,0.22)] sm:px-6 sm:py-4">
             <CountdownTimer
-              targetDate="2026-05-25T23:59:59-05:00"
+              targetDate="2026-07-25T23:59:59-05:00"
               variant="boxed"
               size="large"
               className="text-white"
