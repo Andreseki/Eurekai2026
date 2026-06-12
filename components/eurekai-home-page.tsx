@@ -292,8 +292,8 @@ export default function EurekAiHomePage() {
                 {
                   topOrange: true,
                   topLabel: "SÁBADO",
-                  day: "30",
-                  month: "MAYO",
+                  day: "22",
+                  month: "AGOSTO",
                   badge: "Presencial",
                   kind: "Bootcamp",
                   title: "Innovación potenciada con Inteligencia Artificial.",

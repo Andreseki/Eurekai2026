@@ -31,8 +31,8 @@ export default function Navbar() {
           href="/bootcamp"
           className="inline-block px-3 text-xs leading-snug transition hover:underline md:text-sm"
         >
-          Innovación potenciada con Inteligencia Artificial · Bootcamp · Presencial · 25 de
-          julio · Bogotá
+          Innovación potenciada con Inteligencia Artificial · Bootcamp · Presencial · 22 de
+          agosto · Bogotá
         </Link>
       </div>
 
