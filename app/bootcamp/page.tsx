@@ -239,7 +239,7 @@ export default function BootcampPage() {
             </p>
 
             <div className="mt-8 inline-block rounded-md border-2 border-dashed border-white px-8 py-4 text-center">
-              <p className="text-lg font-semibold text-white md:text-xl">30 de Mayo</p>
+              <p className="text-lg font-semibold text-white md:text-xl">22 de agosto</p>
               <p className="mt-1 text-2xl font-extrabold tracking-wide text-white md:text-3xl">SOLD OUT</p>
             </div>
           </div>
@@ -266,7 +266,7 @@ export default function BootcampPage() {
                 <video
                   src="/video_eurekai.mp4"
                   poster="/preview1.jpeg"
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain object-center bg-slate-950"
                   controls
                   playsInline
                   preload="metadata"
@@ -293,7 +293,7 @@ export default function BootcampPage() {
                 <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
                   Hemos completado el cupo máximo de profesionales para nuestra edición de este mes.
                   Abrimos oficialmente la preventa para nuestra próxima experiencia presencial el{" "}
-                  <strong className="font-bold">25 de julio</strong> en Bogotá.
+                  <strong className="font-bold">22 de agosto</strong> en Bogotá.
                 </p>
                 <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
                   Regístrate en la lista de acceso prioritario para asegurar tu cupo antes de la
@@ -301,7 +301,7 @@ export default function BootcampPage() {
                 </p>
 
                 <div className="mt-[21px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
-                  <p className="text-[1.75rem] font-extrabold leading-none">25 de Julio</p>
+                  <p className="text-[1.75rem] font-extrabold leading-none">22 de agosto</p>
                   <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
                     NUEVA FECHA
                   </p>
@@ -818,18 +818,18 @@ export default function BootcampPage() {
 
         <div className="relative mx-auto max-w-[1440px] px-6 text-center text-white">
           <p className="text-lg font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-xl">
-            25 de julio · Hannah Hops, Usaquén, Bogotá
+            22 de agosto · Hannah Hops, Usaquén, Bogotá
           </p>
           <h2 id="reserva-middle" className="text-[4.4rem] font-extrabold uppercase tracking-[0.015em] text-[#fd7914] sm:text-[4.9rem] lg:text-[5.4rem]">
             Early Bird
           </h2>
           <p className="mt-3 text-[2.1rem] font-semibold text-white/90 sm:text-[2.5rem] lg:text-[2.8rem]">
-            Precio especial hasta el 25 de julio
+            Precio especial hasta el 22 de agosto
           </p>
 
           <div id="reserva-countdown" className="mx-auto mt-8 flex w-full max-w-[980px] justify-center rounded-[1.35rem] bg-white/10 px-3 py-3 shadow-[0_24px_60px_rgba(2,8,23,0.22)] sm:px-6 sm:py-4">
             <CountdownTimer
-              targetDate="2026-07-25T23:59:59-05:00"
+              targetDate="2026-08-22T23:59:59-05:00"
               variant="boxed"
               size="large"
               className="text-white"
