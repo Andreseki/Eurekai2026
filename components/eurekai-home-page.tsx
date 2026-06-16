@@ -310,8 +310,8 @@ export default function EurekAiHomePage() {
                   kind: "Curso",
                   title: "IA aplicada para empresarios",
                   desc: "Curso práctico orientado a empresarios y emprendedores que buscan llevar la inteligencia artificial del entusiasmo a la ejecución.",
-                  meta: ["Bogotá", "16 horas"],
-                  href: "/experiencias",
+                  meta: ["Online", "16 horas"],
+                  href: "/experiencias/ia-aplicada-para-empresarios",
                 },
                 {
                   topOrange: false,
@@ -322,7 +322,7 @@ export default function EurekAiHomePage() {
                   kind: "Curso",
                   title: "IA para el Liderazgo",
                   desc: "Programa ejecutivo para líderes que necesitan orientar la adopción de IA con criterio estratégico y responsabilidad.",
-                  meta: ["Bogotá", "16 horas"],
+                  meta: ["Online", "16 horas"],
                   href: "/experiencias",
                 },
               ].map((ev) => (

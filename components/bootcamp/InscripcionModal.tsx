@@ -206,6 +206,8 @@ export default function InscripcionModal({ open, onClose }: InscripcionModalProp
                   cantidad,
                   esParaMi,
                   mensaje: `Inscripción bootcamp — ${cantidad} cupo(s)`,
+                  curso: BOOTCAMP_NAME,
+                  origen: window.location.pathname,
                 }
 
                 if (cantidad === 1) {

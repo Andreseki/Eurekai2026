@@ -5,7 +5,7 @@ export function experienciaAnchorId(experienceId: string) {
 
 /** Desde inicio «Escoge tu camino» → pestaña + tarjeta concreta. */
 export const HOME_CAMINO_LINKS = {
-  cursos: `/experiencias?tab=cursos#${experienciaAnchorId("2")}`,
-  incompany: `/experiencias?tab=incompany#${experienciaAnchorId("6")}`,
-  misiones: `/experiencias?tab=misiones#${experienciaAnchorId("7")}`,
+  cursos: `/experiencias/ia-aplicada-para-empresarios`,
+  incompany: `/experiencias/lego-serious-play`,
+  misiones: `/experiencias/explorando-el-futuro-de-la-ia`,
 } as const

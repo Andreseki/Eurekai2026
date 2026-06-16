@@ -52,11 +52,6 @@ export const metadata: Metadata = {
     'og:image:secure_url': ogImageUrl,
     'twitter:image': ogImageUrl,
   },
-  icons: {
-    icon: '/placeholder-logo.png',
-    shortcut: '/placeholder-logo.png',
-    apple: '/placeholder-logo.png',
-  },
 }
 
 export default function RootLayout({

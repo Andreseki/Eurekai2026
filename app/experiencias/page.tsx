@@ -46,7 +46,7 @@ const experiences: Experience[] = [
     titulo: "IA aplicada para empresarios",
     desc: "Curso práctico para empresarios que buscan llevar la IA del entusiasmo a la ejecución.",
     duracion: "16 horas",
-    link: "#",
+    link: "/experiencias/ia-aplicada-para-empresarios",
     thumb: "/iaparaempresarios.png",
   },
   {
@@ -94,7 +94,7 @@ const experiences: Experience[] = [
     titulo: "LEGO Serious Play · Workshop experiencial para equipos",
     desc: "Tu equipo usará bloques LEGO para desbloquear la imaginación colectiva y construir un lenguaje compartido de colaboración.",
     duracion: "8 horas",
-    link: "#",
+    link: "/experiencias/lego-serious-play",
     thumb: "/legoserius.jpg",
   },
   {
@@ -106,7 +106,7 @@ const experiences: Experience[] = [
     titulo: "Explorando el Futuro de la IA",
     desc: "Experiencia inmersiva de 10 días combinando formación en IA con una universidad en China y networking con innovadores asiáticos.",
     duracion: "10 días",
-    link: "#",
+    link: "/experiencias/explorando-el-futuro-de-la-ia",
     thumb: "/explorando.png",
   },
 ]

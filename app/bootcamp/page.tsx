@@ -17,14 +17,16 @@ import { useState } from "react"
 import CountdownTimer from "../../components/countdown-timer"
 // import BootcampStickyBanner from "@/components/bootcamp/BootcampStickyBanner"
 import InfoModal from "@/components/bootcamp/InfoModal"
+import InfoBar from "@/components/bootcamp/InfoBar"
 import InscripcionModal from "@/components/bootcamp/InscripcionModal"
 import TrainersSection from "@/components/bootcamp/TrainersSection"
+import BootcampGallerySection from "@/components/bootcamp/BootcampGallerySection"
 import Navbar from "@/components/Navbar"
+import SitePageFooter from "@/components/site-page-footer"
 // import PromoBottomBar from "@/components/floating-cta"
 import { WOMPI_CHECKOUT_URL, whatsappUrl } from "@/lib/site-config"
 import TestimonialsCarousel from "../../components/testimonials-carousel"
 import Image from "next/image"
-import Link from "next/link"
 
 export default function BootcampPage() {
   // Central place to edit CTA, navigation and social destinations.
@@ -222,7 +224,7 @@ export default function BootcampPage() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[min(78vh,760px)] max-w-7xl flex-col items-center gap-10 px-6 py-16 lg:min-h-[min(82vh,820px)] lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+        <div className="relative z-10 mx-auto flex min-h-[min(78vh,760px)] max-w-7xl flex-col justify-center px-6 py-16 lg:min-h-[min(82vh,820px)]">
           <div className="w-full max-w-xl font-sans lg:max-w-2xl">
             <h1 className="text-4xl font-bold leading-[1.12] text-white md:text-5xl lg:text-[3.25rem]">
               Bootcamp de innovación
@@ -237,77 +239,27 @@ export default function BootcampPage() {
               negocio a las 8:00 AM y salir con un prototipo funcional y un plan validado a las 6:00
               PM.
             </p>
-
-            <div className="mt-8 inline-block rounded-md border-2 border-dashed border-white px-8 py-4 text-center">
-              <p className="text-lg font-semibold text-white md:text-xl">22 de agosto</p>
-              <p className="mt-1 text-2xl font-extrabold tracking-wide text-white md:text-3xl">SOLD OUT</p>
-            </div>
-          </div>
-
-          <div className="relative mx-auto w-[min(72vw,300px)] shrink-0 lg:mx-0 lg:w-[340px]">
-            <Image
-              src="/soldoutt.png"
-              alt="Sold Out"
-              width={680}
-              height={680}
-              className="h-auto w-full object-contain mix-blend-screen"
-              priority
-            />
           </div>
         </div>
       </section>
 
-      {/* Reserva rápida — video + countdown */}
-      <section id="cursos" className="bg-white pt-10 pb-14 lg:pt-10 lg:pb-16">
+      <InfoBar
+        onOpenInfo={() => setShowInfoModal(true)}
+        onOpenInscripcion={() => setShowInscripcionModal(true)}
+      />
+
+      {/* Video + incluye */}
+      <section id="cursos" className="bg-white pt-10 pb-14 lg:pt-12 lg:pb-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mx-auto grid max-w-[820px] items-start gap-8 lg:grid-cols-[minmax(280px,360px)_minmax(0,360px)] lg:gap-10">
-            <div className="order-2 mx-auto w-full max-w-[360px] lg:order-1 lg:mx-0">
-              <div className="relative h-[520px] overflow-hidden rounded-[1.6rem] shadow-[0_24px_60px_rgba(2,8,23,0.18)] sm:h-[620px] lg:h-[620px]">
-                <video
-                  src="/video_eurekai.mp4"
-                  poster="/preview1.jpeg"
-                  className="h-full w-full object-contain object-center bg-slate-950"
-                  controls
-                  playsInline
-                  preload="metadata"
-                />
-              </div>
-            </div>
-
-            <div className="contents lg:order-2 lg:block lg:pl-5 lg:text-left">
-              <div className="order-1 mt-[15px] flex w-full flex-col font-sans text-[#333333] lg:max-w-[360px]">
-                <div className="mt-[10px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
-                  <p className="text-lg font-bold leading-none">30 de Mayo</p>
-                  <p className="mt-1 text-[1.75rem] font-extrabold leading-none">
-                    100% COMPLETO
-                  </p>
-                  <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                    EDICIÓN AGOTADA
-                  </p>
-                </div>
-
-                <h2 className="mt-[25px] text-[1.68rem] font-extrabold leading-[1.14] text-black">
-                  ¡Inscripciones cerradas para mayo!
-                </h2>
-
-                <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
-                  Hemos completado el cupo máximo de profesionales para nuestra edición de este mes.
-                  Abrimos oficialmente la preventa para nuestra próxima experiencia presencial el{" "}
-                  <strong className="font-bold">22 de agosto</strong> en Bogotá.
-                </p>
-                <p className="mt-[25px] text-base font-normal leading-[1.52] text-[#333333]">
-                  Regístrate en la lista de acceso prioritario para asegurar tu cupo antes de la
-                  apertura general de ventas y recibir un beneficio exclusivo.
-                </p>
-
-                <div className="mt-[21px] w-full rounded-[0.65rem] border-2 border-dashed border-[#ff6600] px-4 py-2.5 text-center text-[#ff6600]">
-                  <p className="text-[1.75rem] font-extrabold leading-none">22 de agosto</p>
-                  <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.22em]">
-                    NUEVA FECHA
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="mx-auto max-w-4xl overflow-hidden shadow-[0_24px_60px_rgba(2,8,23,0.18)]">
+            <video
+              src="/video_eurekai.mp4"
+              poster="/video_eurekai-poster.jpg"
+              className="aspect-video w-full bg-slate-950 object-cover object-center"
+              controls
+              playsInline
+              preload="metadata"
+            />
           </div>
 
           <div className="mx-auto mt-10 grid max-w-[1060px] items-stretch gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-10">
@@ -786,6 +738,8 @@ export default function BootcampPage() {
         </div>
       </section>
 
+      <BootcampGallerySection onInscribir={() => setShowInscripcionModal(true)} />
+
       {/* Testimonios Section */}
       <section className="bg-slate-100 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6">
@@ -1016,26 +970,7 @@ export default function BootcampPage() {
         onClose={() => setShowInscripcionModal(false)}
       />
 
-      <footer className="relative bg-black" data-site-footer>
-        {/* Banner inferior/sticky oculto para esta versión del bootcamp. */}
-        {/* <BootcampStickyBanner onOpenInscripcion={() => setShowInscripcionModal(true)} /> */}
-        {/* Barra anterior (1280×80): descomenta PromoBottomBar si la necesitas */}
-        {/* <PromoBottomBar /> */}
-        <div className="footer-body">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row">
-          <Link href="/bootcamp" className="flex items-center gap-3">
-            <Image
-              src="/LogoEurekai-WTH.png"
-              alt="EurekAI logo"
-              width={140}
-              height={42}
-              className="h-8 w-auto object-contain"
-            />
-          </Link>
-          <p className="text-sm text-white/65">© 2025 EurekAI. Todos los derechos reservados</p>
-        </div>
-        </div>
-      </footer>
+      <SitePageFooter />
 
     </main>
   )

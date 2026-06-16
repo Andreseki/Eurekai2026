@@ -14,6 +14,7 @@ type CountdownParts = {
   days: number
   hours: number
   minutes: number
+  seconds: number
 }
 
 function pad(n: number) {
@@ -25,12 +26,20 @@ function getCountdown(targetMs: number): CountdownParts {
   const days = Math.floor(diff / (1000 * 60 * 60 * 24))
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
   const minutes = Math.floor((diff / (1000 * 60)) % 60)
-  return { days, hours, minutes }
+  const seconds = Math.floor((diff / 1000) % 60)
+  return { days, hours, minutes, seconds }
+}
+
+const ZERO_COUNTDOWN: CountdownParts = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
 }
 
 export default function InfoBar({ onOpenInfo, onOpenInscripcion }: InfoBarProps) {
   const targetMs = useMemo(() => getEnrollmentDeadlineMs(), [])
-  const [countdown, setCountdown] = useState<CountdownParts>(() => getCountdown(targetMs))
+  const [countdown, setCountdown] = useState<CountdownParts>(ZERO_COUNTDOWN)
 
   useEffect(() => {
     const tick = () => setCountdown(getCountdown(targetMs))
@@ -40,9 +49,9 @@ export default function InfoBar({ onOpenInfo, onOpenInscripcion }: InfoBarProps)
   }, [targetMs])
 
   const infoItems = [
-    { icon: Clock, label: "16 horas" },
-    { icon: Users, label: "20 cupos" },
-    { icon: MapPin, label: "Modalidad online" },
+    { icon: Clock, label: "10 horas" },
+    { icon: Users, label: "Cupos limitados" },
+    { icon: MapPin, label: "Modalidad presencial" },
     { icon: Calendar, label: BOOTCAMP_EVENT_DATE_LABEL },
   ] as const
 
@@ -64,13 +73,17 @@ export default function InfoBar({ onOpenInfo, onOpenInscripcion }: InfoBarProps)
             <div className="info-bar__countdown-values">
               <CountdownUnit value={pad(countdown.days)} label="DÍAS" />
               <span className="info-bar__countdown-sep" aria-hidden>
-                |
+                :
               </span>
               <CountdownUnit value={pad(countdown.hours)} label="HORAS" />
               <span className="info-bar__countdown-sep" aria-hidden>
-                |
+                :
               </span>
               <CountdownUnit value={pad(countdown.minutes)} label="MINUTOS" />
+              <span className="info-bar__countdown-sep" aria-hidden>
+                :
+              </span>
+              <CountdownUnit value={pad(countdown.seconds)} label="SEGUNDOS" />
             </div>
           </div>
         </div>
@@ -97,7 +110,7 @@ export default function InfoBar({ onOpenInfo, onOpenInscripcion }: InfoBarProps)
 
 function CountdownUnit({ value, label }: { value: string; label: string }) {
   return (
-    <div className="text-center">
+    <div className="info-bar__countdown-unit">
       <p className="info-bar__countdown-unit-value">{value}</p>
       <p className="info-bar__countdown-unit-label">{label}</p>
     </div>

@@ -89,38 +89,52 @@
 .info-bar__countdown-values {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .info-bar__countdown-sep {
   font-size: 1.75rem;
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1;
-  color: #94a3b8;
+  color: #fd7914;
+  padding-bottom: 1.25rem;
+}
+
+.info-bar__countdown-unit {
+  display: flex;
+  min-width: 4.5rem;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.5rem 0.625rem;
 }
 
 .info-bar__countdown-unit-value {
   margin: 0;
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: #0f172a;
+  color: #fd7914;
 }
 
 @media (min-width: 768px) {
   .info-bar__countdown-unit-value {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 }
 
 .info-bar__countdown-unit-label {
-  margin: 0.25rem 0 0;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  margin: 0.35rem 0 0;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #64748b;
+  color: #fd7914;
 }
 
 .info-bar__actions {

@@ -4,6 +4,7 @@ import { X } from "lucide-react"
 import { useEffect, useState, type ReactNode } from "react"
 import { createPortal } from "react-dom"
 import { useModalLock } from "@/components/bootcamp/use-modal-lock"
+import { BOOTCAMP_NAME } from "@/lib/bootcamp-config"
 
 export type InfoModalProps = {
   open: boolean
@@ -109,6 +110,8 @@ export default function InfoModal({ open, onClose }: InfoModalProps) {
                       telefono: String(fd.get("telefono")).trim(),
                       mensaje: String(fd.get("mensaje")).trim(),
                       tipo: "info",
+                      curso: BOOTCAMP_NAME,
+                      origen: window.location.pathname,
                     }),
                   })
                   if (!res.ok) {

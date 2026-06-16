@@ -1,3 +1,4 @@
+import { saveLead } from "@/lib/leads-db"
 import { CONTACT_INBOX_EMAIL } from "@/lib/site-config"
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
@@ -8,6 +9,10 @@ type ContactPayload = {
   telefono?: string
   mensaje?: string
   tipo?: string
+  curso?: string
+  empresa?: string
+  participantes?: string
+  origen?: string
   cantidad?: number
   tipoDocumento?: string
   numero?: string
@@ -27,7 +32,7 @@ function buildHtml(data: ContactPayload) {
 
   return `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;">
-      <h2 style="color:#F97316;">Nuevo mensaje — EurekAI Bootcamp</h2>
+      <h2 style="color:#F97316;">Nuevo mensaje — EurekAI</h2>
       <table style="border-collapse:collapse;width:100%;">${rows}</table>
     </div>
   `
@@ -54,7 +59,7 @@ async function sendViaSmtp(data: ContactPayload) {
     tipo === "inscripcion_grupal"
       ? `Inscripción grupal bootcamp: ${data.nombre}`
       : tipo === "info"
-        ? `Más información bootcamp: ${data.nombre}`
+        ? `Más información: ${data.nombre}${data.curso ? ` — ${data.curso}` : ""}`
         : `Contacto web EurekAI: ${data.nombre}`
 
   await transporter.sendMail({
@@ -80,7 +85,7 @@ async function sendViaResend(data: ContactPayload) {
     tipo === "inscripcion_grupal"
       ? `Inscripción grupal bootcamp: ${n}`
       : tipo === "info"
-        ? `Más información bootcamp: ${n}`
+        ? `Más información: ${n}${data.curso ? ` — ${data.curso}` : ""}`
         : `Contacto web EurekAI: ${n}`
 
   const res = await fetch("https://api.resend.com/emails", {
@@ -129,6 +134,29 @@ async function sendViaFormSubmit(data: ContactPayload) {
   return res.ok
 }
 
+async function persistLead(data: ContactPayload) {
+  const extra: Record<string, unknown> = {}
+  if (data.cantidad) extra.cantidad = data.cantidad
+  if (data.tipoDocumento) extra.tipoDocumento = data.tipoDocumento
+  if (data.numero) extra.numero = data.numero
+  if (data.nacionalidad) extra.nacionalidad = data.nacionalidad
+  if (data.profesion) extra.profesion = data.profesion
+  if (data.esParaMi !== undefined) extra.esParaMi = data.esParaMi
+
+  await saveLead({
+    nombre: data.nombre!,
+    email: data.email!,
+    telefono: data.telefono!,
+    mensaje: data.mensaje ?? null,
+    tipo: data.tipo ?? "contacto",
+    curso: data.curso ?? null,
+    empresa: data.empresa ?? null,
+    participantes: data.participantes ?? null,
+    origen: data.origen ?? null,
+    metadata: Object.keys(extra).length ? extra : undefined,
+  })
+}
+
 export async function POST(request: Request) {
   let body: unknown
   try {
@@ -150,6 +178,15 @@ export async function POST(request: Request) {
   if (!n || !e || !t) {
     return NextResponse.json({ ok: false, error: "missing_fields" }, { status: 400 })
   }
+
+  data.nombre = n
+  data.email = e
+  data.telefono = t
+
+  if (typeof data.curso === "string") data.curso = data.curso.trim() || undefined
+  if (typeof data.empresa === "string") data.empresa = data.empresa.trim() || undefined
+  if (typeof data.participantes === "string") data.participantes = data.participantes.trim() || undefined
+  if (typeof data.origen === "string") data.origen = data.origen.trim() || undefined
 
   if (tipo === "info" || tipo === "contacto") {
     const m = typeof data.mensaje === "string" ? data.mensaje.trim() : ""
@@ -173,6 +210,8 @@ export async function POST(request: Request) {
   }
 
   try {
+    await persistLead(data)
+
     if (await sendViaSmtp(data)) {
       return NextResponse.json({ ok: true })
     }
