@@ -19,23 +19,100 @@ type ContactPayload = {
   nacionalidad?: string
   profesion?: string
   esParaMi?: boolean
+  metadata?: Record<string, unknown>
+  fecha?: string
+  hora?: string
+}
+
+const EMAIL_LABELS: Record<string, string> = {
+  nombre: "Nombre",
+  email: "Correo",
+  telefono: "Teléfono",
+  mensaje: "Mensaje",
+  tipo: "Tipo de solicitud",
+  curso: "Curso",
+  empresa: "Empresa",
+  participantes: "Participantes",
+  origen: "Origen",
+  fecha: "Fecha solicitada",
+  hora: "Hora solicitada",
+  cantidad: "Cantidad",
+  tipoDocumento: "Tipo de documento",
+  numero: "Número de documento",
+  nacionalidad: "Nacionalidad",
+  profesion: "Profesión",
+  esParaMi: "Es para mí",
+}
+
+function flattenForEmail(data: ContactPayload): Record<string, string> {
+  const out: Record<string, string> = {}
+
+  for (const [key, value] of Object.entries(data)) {
+    if (key === "metadata") continue
+    if (value === undefined || value === "") continue
+    out[key] = String(value)
+  }
+
+  if (data.metadata && typeof data.metadata === "object") {
+    for (const [key, value] of Object.entries(data.metadata)) {
+      if (value === undefined || value === "") continue
+      out[key] = String(value)
+    }
+  }
+
+  return out
+}
+
+function emailSubject(data: ContactPayload) {
+  const tipo = data.tipo ?? "contacto"
+  const n = data.nombre ?? ""
+
+  if (tipo === "inscripcion_grupal") return `Inscripción grupal bootcamp: ${n}`
+  if (tipo === "info") return `Más información: ${n}${data.curso ? ` — ${data.curso}` : ""}`
+  if (tipo === "agenda") {
+    const slot = data.fecha && data.hora ? ` — ${data.fecha} ${data.hora}` : ""
+    return `Agendar reunión: ${n}${slot}`
+  }
+  return `Contacto web EurekAI: ${n}`
 }
 
 function buildHtml(data: ContactPayload) {
-  const rows = Object.entries(data)
-    .filter(([, v]) => v !== undefined && v !== "")
-    .map(
-      ([k, v]) =>
-        `<tr><td style="padding:8px 12px;font-weight:600;color:#334155;">${k}</td><td style="padding:8px 12px;">${String(v)}</td></tr>`,
-    )
+  const flat = flattenForEmail(data)
+  const tipo = data.tipo ?? "contacto"
+  const title =
+    tipo === "agenda"
+      ? "Nueva solicitud de reunión — EurekAI"
+      : tipo === "inscripcion_grupal"
+        ? "Nueva inscripción grupal — EurekAI"
+        : "Nuevo mensaje — EurekAI"
+
+  const priorityKeys =
+    tipo === "agenda" ? ["fecha", "hora", "nombre", "email", "telefono", "mensaje", "origen"] : []
+  const orderedKeys = [
+    ...priorityKeys.filter((k) => k in flat),
+    ...Object.keys(flat).filter((k) => !priorityKeys.includes(k)),
+  ]
+
+  const rows = orderedKeys
+    .map((key) => {
+      const label = EMAIL_LABELS[key] ?? key
+      return `<tr><td style="padding:8px 12px;font-weight:600;color:#334155;white-space:nowrap;">${label}</td><td style="padding:8px 12px;">${flat[key]}</td></tr>`
+    })
     .join("")
 
   return `
     <div style="font-family:Inter,Arial,sans-serif;max-width:560px;">
-      <h2 style="color:#F97316;">Nuevo mensaje — EurekAI</h2>
+      <h2 style="color:#F97316;">${title}</h2>
       <table style="border-collapse:collapse;width:100%;">${rows}</table>
     </div>
   `
+}
+
+function buildText(data: ContactPayload) {
+  const flat = flattenForEmail(data)
+  return Object.entries(flat)
+    .map(([key, value]) => `${EMAIL_LABELS[key] ?? key}: ${value}`)
+    .join("\n")
 }
 
 async function sendViaSmtp(data: ContactPayload) {
@@ -55,12 +132,7 @@ async function sendViaSmtp(data: ContactPayload) {
   })
 
   const tipo = data.tipo ?? "contacto"
-  const subject =
-    tipo === "inscripcion_grupal"
-      ? `Inscripción grupal bootcamp: ${data.nombre}`
-      : tipo === "info"
-        ? `Más información: ${data.nombre}${data.curso ? ` — ${data.curso}` : ""}`
-        : `Contacto web EurekAI: ${data.nombre}`
+  const subject = emailSubject(data)
 
   await transporter.sendMail({
     from: `"EurekAI Web" <${user}>`,
@@ -68,7 +140,7 @@ async function sendViaSmtp(data: ContactPayload) {
     replyTo: data.email,
     subject,
     html: buildHtml(data),
-    text: JSON.stringify(data, null, 2),
+    text: buildText(data),
   })
 
   return true
@@ -80,13 +152,7 @@ async function sendViaResend(data: ContactPayload) {
 
   const from = process.env.RESEND_FROM ?? "EurekAI <onboarding@resend.dev>"
   const n = data.nombre ?? ""
-  const tipo = data.tipo ?? "contacto"
-  const subject =
-    tipo === "inscripcion_grupal"
-      ? `Inscripción grupal bootcamp: ${n}`
-      : tipo === "info"
-        ? `Más información: ${n}${data.curso ? ` — ${data.curso}` : ""}`
-        : `Contacto web EurekAI: ${n}`
+  const subject = emailSubject(data)
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -96,10 +162,11 @@ async function sendViaResend(data: ContactPayload) {
     },
     body: JSON.stringify({
       from,
-      to: [CONTACT_INBOX_EMAIL],
+      to: [process.env.CONTACT_EMAIL_TO ?? CONTACT_INBOX_EMAIL],
       reply_to: data.email,
       subject,
-      text: JSON.stringify(data, null, 2),
+      html: buildHtml(data),
+      text: buildText(data),
     }),
   })
 
@@ -107,10 +174,11 @@ async function sendViaResend(data: ContactPayload) {
 }
 
 async function sendViaFormSubmit(data: ContactPayload) {
+  const flat = flattenForEmail(data)
   const n = data.nombre ?? ""
   const e = data.email ?? ""
   const t = data.telefono ?? ""
-  const m = data.mensaje ?? JSON.stringify(data)
+  const m = data.mensaje ?? buildText(data)
 
   const ajaxUrl = `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_INBOX_EMAIL)}`
   const res = await fetch(ajaxUrl, {
@@ -120,10 +188,10 @@ async function sendViaFormSubmit(data: ContactPayload) {
       Accept: "application/json",
     },
     body: JSON.stringify({
-      _subject: `Contacto EurekAI: ${n}`,
+      _subject: emailSubject(data),
       _captcha: "false",
       _template: "table",
-      ...data,
+      ...flat,
       nombre: n,
       email: e,
       telefono: t,
@@ -142,6 +210,11 @@ async function persistLead(data: ContactPayload) {
   if (data.nacionalidad) extra.nacionalidad = data.nacionalidad
   if (data.profesion) extra.profesion = data.profesion
   if (data.esParaMi !== undefined) extra.esParaMi = data.esParaMi
+  if (data.metadata && typeof data.metadata === "object") {
+    Object.assign(extra, data.metadata)
+  }
+  if (typeof data.fecha === "string" && data.fecha.trim()) extra.fecha = data.fecha.trim()
+  if (typeof data.hora === "string" && data.hora.trim()) extra.hora = data.hora.trim()
 
   await saveLead({
     nombre: data.nombre!,
@@ -187,8 +260,17 @@ export async function POST(request: Request) {
   if (typeof data.empresa === "string") data.empresa = data.empresa.trim() || undefined
   if (typeof data.participantes === "string") data.participantes = data.participantes.trim() || undefined
   if (typeof data.origen === "string") data.origen = data.origen.trim() || undefined
+  if (typeof data.fecha === "string") data.fecha = data.fecha.trim() || undefined
+  if (typeof data.hora === "string") data.hora = data.hora.trim() || undefined
 
-  if (tipo === "info" || tipo === "contacto") {
+  if (!data.fecha && data.metadata && typeof data.metadata.fecha === "string") {
+    data.fecha = data.metadata.fecha.trim()
+  }
+  if (!data.hora && data.metadata && typeof data.metadata.hora === "string") {
+    data.hora = data.metadata.hora.trim()
+  }
+
+  if (tipo === "info" || tipo === "contacto" || tipo === "agenda") {
     const m = typeof data.mensaje === "string" ? data.mensaje.trim() : ""
     if (!m) {
       return NextResponse.json({ ok: false, error: "missing_fields" }, { status: 400 })

@@ -8,9 +8,9 @@ import {
   useState,
   type ReactNode,
 } from "react"
+import ModalAgenda from "@/components/ModalAgenda"
 import ModalContacto from "@/components/ModalContacto"
 import WhatsAppFloat from "@/components/WhatsAppFloat"
-import { GOOGLE_BOOKING_URL } from "@/lib/site-config"
 
 type SiteModalsContextValue = {
   openContact: () => void
@@ -31,15 +31,12 @@ export function useSiteModals() {
 
 export function SiteModalsProvider({ children }: { children: ReactNode }) {
   const [contactOpen, setContactOpen] = useState(false)
+  const [agendaOpen, setAgendaOpen] = useState(false)
 
   const openContact = useCallback(() => setContactOpen(true), [])
-  const openAgenda = useCallback(() => {
-    if (typeof window !== "undefined") {
-      window.open(GOOGLE_BOOKING_URL, "_blank", "noopener,noreferrer")
-    }
-  }, [])
+  const openAgenda = useCallback(() => setAgendaOpen(true), [])
   const closeContact = useCallback(() => setContactOpen(false), [])
-  const closeAgenda = useCallback(() => {}, [])
+  const closeAgenda = useCallback(() => setAgendaOpen(false), [])
 
   const value = useMemo(
     () => ({
@@ -56,6 +53,7 @@ export function SiteModalsProvider({ children }: { children: ReactNode }) {
       {children}
       <WhatsAppFloat />
       <ModalContacto open={contactOpen} onClose={closeContact} />
+      <ModalAgenda open={agendaOpen} onClose={closeAgenda} />
     </SiteModalsContext.Provider>
   )
 }
